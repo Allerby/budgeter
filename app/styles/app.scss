@@ -1,0 +1,88 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.Aligner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 24em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  .Aligner-item {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    &--fixed {
+      -webkit-box-flex: 0;
+      -webkit-flex: none;
+      -ms-flex: none;
+      flex: none;
+      max-width: 50%;
+    }
+  }
+}
+
+.user {
+  &__photo {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 40px;
+  }
+}
+
+#site_header {
+  text-align: center;
+  color: #fa8184;
+}
+
+#googleSignIn {
+  height: 40px;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.1s ease-in-out;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  color: #000;
+  width: 285px;
+  margin: 0 auto;
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+  }
+  &:active {
+    background-color: #EEEEEE;
+  }
+  span.label {
+    font-family: serif;
+    font-weight: normal;
+  }
+  img.icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 24px;
+    vertical-align: middle;
+  }
+  span.buttonText {
+    opacity: 0.54;
+    vertical-align: middle;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+  }
+}

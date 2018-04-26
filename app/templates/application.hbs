@@ -1,5 +1,29 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<div class={{routeStyleNamespaceClassSet}}>
+  {{outlet}}
+</div>
+<div class="Aligner">
+  <div class="Aligner-item Aligner-item--fixed">
 
-{{outlet}}
+    <h1 id="site_header">Budgtr</h1>
+
+    {{#if session.isAuthenticated}}
+
+      {{session.currentUser.displayName}} <img class="user__photo" src="{{session.currentUser.photoURL}}">
+      <button {{action "signOut"}}>Sign out</button>
+
+      <input type="file" onChange={{action 'upload'}} />
+
+      {{#each myData.data as |data|}}
+        <p>{{data.Type}}, {{data.Details}} : {{data.Amount}}</p>
+      {{/each}}
+
+    {{else}}
+
+      <div id="googleSignIn" {{action "signIn" "google"}}>
+        <img class="icon" src="/google-g.png"/>
+        <span class="buttonText">Sign in with Google</span>
+      </div>
+
+    {{/if}}
+  </div>
+</div>

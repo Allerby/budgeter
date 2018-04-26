@@ -16,7 +16,15 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
+    firebase: {
+      apiKey: 'AIzaSyDVuTl-pMh0t4JntdLK2fDRq-VvzCjLeps',
+      authDomain: 'budgeter-1525e.firebaseapp.com',
+      databaseURL: 'https://budgeter-1525e.firebaseio.com',
+      storageBucket: '',
+    },
+    torii: {
+      sessionServiceName: 'session'
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
