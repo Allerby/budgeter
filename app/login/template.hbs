@@ -1,0 +1,12 @@
+{{#if session.isAuthenticated}}
+
+  Already signed in.
+
+{{else}}
+
+  <div id="googleSignIn" {{action "signIn" "google"}}>
+    <img class="icon" src="/google-g.png"/>
+    <span class="buttonText">Sign in with Google</span>
+  </div>
+
+{{/if}}

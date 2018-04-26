@@ -1,29 +1,19 @@
+{{#if session.isAuthenticated}}
+  {{primary-navigation}}
+{{/if}}
+
+<h1>{{#link-to 'index' id="site_header"}}Budgtr{{/link-to}}</h1>
+
 <div class={{routeStyleNamespaceClassSet}}>
   {{outlet}}
 </div>
-<div class="Aligner">
-  <div class="Aligner-item Aligner-item--fixed">
 
-    <h1 id="site_header">Budgtr</h1>
+{{#if session.isAuthenticated}}
 
-    {{#if session.isAuthenticated}}
+  <input class="file--input" type="file" onChange={{action 'upload'}} />
 
-      {{session.currentUser.displayName}} <img class="user__photo" src="{{session.currentUser.photoURL}}">
-      <button {{action "signOut"}}>Sign out</button>
+  {{#each myData.data as |data|}}
+    <p>{{data.Type}}, {{data.Details}} : {{data.Amount}}</p>
+  {{/each}}
 
-      <input type="file" onChange={{action 'upload'}} />
-
-      {{#each myData.data as |data|}}
-        <p>{{data.Type}}, {{data.Details}} : {{data.Amount}}</p>
-      {{/each}}
-
-    {{else}}
-
-      <div id="googleSignIn" {{action "signIn" "google"}}>
-        <img class="icon" src="/google-g.png"/>
-        <span class="buttonText">Sign in with Google</span>
-      </div>
-
-    {{/if}}
-  </div>
-</div>
+{{/if}}

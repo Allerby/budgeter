@@ -1,0 +1,7 @@
+<navigation id="primary_nav">
+  <profile>
+    <span>{{session.currentUser.displayName}}</span>
+    <img class="user__photo" src="{{session.currentUser.photoURL}}">
+  </profile>
+  <span {{action "signOut"}}>Sign out</span>
+</navigation>
