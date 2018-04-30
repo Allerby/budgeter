@@ -1,12 +1,12 @@
-{{#if session.isAuthenticated}}
+{{#if firebaseSession.isAuthenticated}}
 
   Already signed in.
 
 {{else}}
 
-  <div id="googleSignIn" {{action "signIn" "google"}}>
+  <button id="googleSignIn" disabled={{signIn.isRunning}} onClick={{perform signIn "google"}}>
     <img class="icon" src="/google-g.png"/>
-    <span class="buttonText">Sign in with Google</span>
-  </div>
+    <span class="buttonText">{{if signIn.isRunning 'Signing you in' 'Sign in with Google'}}</span>
+  </button>
 
 {{/if}}

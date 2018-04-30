@@ -23,7 +23,7 @@ module.exports = function(environment) {
       storageBucket: '',
     },
     torii: {
-      sessionServiceName: 'session'
+      sessionServiceName: 'firebaseSession'
     },
     APP: {
       // Here you can pass flags/options to your application instance

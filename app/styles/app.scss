@@ -1,6 +1,9 @@
 @import "reset";
 @import "layout";
 @import "pod-styles";
+@import "mixins";
+
+@include layouts_for_breakpoint();
 
 
 h1 {
@@ -13,9 +16,8 @@ h1 {
   }  
 }
 
-.file--input {
-  display: block;
-  width: 155px;
-  margin: 0 auto;
+.text-center {
+  text-align: center;
 }
+
 

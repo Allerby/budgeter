@@ -1,4 +1,4 @@
-{{#if session.isAuthenticated}}
+{{#if firebaseSession.isAuthenticated}}
   {{primary-navigation}}
 {{/if}}
 
@@ -8,12 +8,25 @@
   {{outlet}}
 </div>
 
-{{#if session.isAuthenticated}}
+{{#if firebaseSession.isAuthenticated}}
 
-  <input class="file--input" type="file" onChange={{action 'upload'}} />
+  {{bank-list 
+    onSelect=(action 'selectBank')
+    selectedBank=selectedBank
+  }}
 
-  {{#each myData.data as |data|}}
-    <p>{{data.Type}}, {{data.Details}} : {{data.Amount}}</p>
-  {{/each}}
+  <h3 class="text-center">Selected Bank: {{selectedBank}}</h3>
+
+  {{#if selectedBank}}
+    {{file-upload 
+      transactions=transactions
+      selectedBank=selectedBank  
+    }}
+  {{/if}}
+
+  {{transaction-list 
+    transactions=transactions
+    selectedBank=selectedBank  
+  }}
 
 {{/if}}

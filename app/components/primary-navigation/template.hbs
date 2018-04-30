@@ -1,7 +1,7 @@
 <navigation id="primary_nav">
   <profile>
-    <span>{{session.currentUser.displayName}}</span>
-    <img class="user__photo" src="{{session.currentUser.photoURL}}">
+    <span>{{firebaseSession.currentUser.displayName}}</span>
+    <img class="user__photo" src="{{firebaseSession.currentUser.photoURL}}">
   </profile>
-  <span {{action "signOut"}}>Sign out</span>
+  <a {{action "signOut"}}>Sign out</a>
 </navigation>
