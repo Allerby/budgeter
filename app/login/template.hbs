@@ -1,4 +1,4 @@
-{{#if session.isAuthenticated}}
+{{#if (or session.isAuthenticated firebaseSession.isAuthenticated)}}
 
   Already signed in.
 

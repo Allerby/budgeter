@@ -1,32 +1,9 @@
-{{#if firebaseSession.isAuthenticated}}
+{{#if session.isAuthenticated}}
   {{primary-navigation}}
 {{/if}}
 
-<h1>{{#link-to 'index' id="site_header"}}Budgtr{{/link-to}}</h1>
+<h1>{{#link-to 'home' id="site_header"}}Budgtr{{/link-to}}</h1>
 
 <div class={{routeStyleNamespaceClassSet}}>
   {{outlet}}
 </div>
-
-{{#if firebaseSession.isAuthenticated}}
-
-  {{bank-list 
-    onSelect=(action 'selectBank')
-    selectedBank=selectedBank
-  }}
-
-  <h3 class="text-center">Selected Bank: {{selectedBank}}</h3>
-
-  {{#if selectedBank}}
-    {{file-upload 
-      transactions=transactions
-      selectedBank=selectedBank  
-    }}
-  {{/if}}
-
-  {{transaction-list 
-    transactions=transactions
-    selectedBank=selectedBank  
-  }}
-
-{{/if}}

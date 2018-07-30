@@ -23,12 +23,23 @@ module.exports = function(environment) {
       storageBucket: '',
     },
     torii: {
-      sessionServiceName: 'firebaseSession'
+      sessionServiceName: 'firebaseSession',
+      providers: {
+        'google': {
+          redirectUri: '/',
+        }
+      }
     },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     }
+  };
+
+  ENV['ember-simple-auth'] = {
+    authenticationRoute: 'login',
+    routeAfterAuthentication: 'index',
+    routeIfAlreadyAuthenticated: 'index'
   };
 
   if (environment === 'development') {

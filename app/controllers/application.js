@@ -1,13 +1,6 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  transactions: [],
-  selectedBank: undefined,
-
-  actions: {
-    selectBank(bank) {
-      this.set('selectedBank', bank);
-      this.set('transactions', []);
-    },
-  },
+  session: service(),
 });

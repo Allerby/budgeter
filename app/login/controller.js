@@ -6,7 +6,8 @@ export default Controller.extend({
   session: service(),
 
   signIn: task(function * (provider) {
-    yield this.get('session').authenticate('authenticator:torii', provider).catch((reason) => {
+    console.log('signIn__provider:', provider);
+    return yield this.get('session').authenticate('authenticator:torii', provider).catch((reason) => {
       this.set('errorMessage', reason.error || reason);
     });
   }),
