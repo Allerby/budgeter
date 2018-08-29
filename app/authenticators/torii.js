@@ -27,4 +27,12 @@ export default ToriiAuthenticator.extend({
       console.log('invalidate:', error);
     });
   },
+  
+  restore(data) {
+    return new RSVP.Promise((resolve) => {
+      return resolve(data);
+    }, (error) => {
+      console.log('invalidate:', error);
+    });
+  },
 });

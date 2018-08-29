@@ -4,7 +4,7 @@
 
 {{else}}
 
-  <button id="googleSignIn" disabled={{signIn.isRunning}} onClick={{perform signIn "google"}}>
+  <button id="google__signin" disabled={{signIn.isRunning}} onClick={{perform signIn "google"}}>
     <img class="icon" src="/google-g.png"/>
     <span class="buttonText">{{if signIn.isRunning 'Signing you in' 'Sign in with Google'}}</span>
   </button>

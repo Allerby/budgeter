@@ -1,0 +1,28 @@
+/**
+ * You can create new utilities here.
+ *
+ * Feel free to rename this file, define multiple utilities here, or make
+ * any other files in this directory.
+
+ * Here's an example:
+**/
+
+/* .skew-45 {
+  transform: skewY(45deg);
+} */
+
+@variants focus {
+  .border-primary-1 {
+    outline: none;
+    border-color: #5b53ff;
+  }
+}
+
+@variants hover {
+  .btn-primary-hover {
+    background-color: #443ce9;
+  }
+  .btn-secondary-hover {
+    @apply .text-primary-3
+  }
+}

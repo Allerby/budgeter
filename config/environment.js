@@ -36,6 +36,18 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['ember-form-for'] = {
+    buttonClasses: [''],
+    fieldClasses: [''],
+    fieldErrorClass: '',
+    errorClasses: [''],
+    hintClasses: ['font-thin text-sm text-primary-2 block mt-2 text-center'],
+    inputClasses: ['border rounded-sm h-12 mt-1 text-primary-2 focus:border-primary-1 p-4 w-full'],
+    labelClasses: ['font-thin text-sm block text-primary-2 mt-4'],
+    resetClasses: [''],
+    submitClasses: ['rounded bg-primary-1 p-4 text-white hover:btn-primary-hover']
+  };
+
   ENV['ember-simple-auth'] = {
     authenticationRoute: 'login',
     routeAfterAuthentication: 'index',

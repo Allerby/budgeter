@@ -1,0 +1,47 @@
+<div class='flex items-center h-screen justify-center'>
+  <div style='width: 464px' class='bg-white p-8 rounded-sm'>
+
+    <div class='flex justify-center'>
+      {{#link-to 'home'}}
+        <img style='width: 100px' src='logo@2x.png' />  
+      {{/link-to}}
+    </div>
+    
+    <div class='flex justify-center'>
+      {{google-button type='register'}}
+    </div>
+
+    <div class='flex mt-6'>
+      <hr class='border-t flex-grow border-shade-3'>
+      <p class='ml-6 mr-6 text-sm text-primary-2'>or create an account</p>
+      <hr class='border-t flex-grow border-shade-3'>
+    </div>
+
+    <div class='mt-4'>
+      {{#form-for model as |f|}}
+        <div class='flex justify-between'>
+          {{f.text-field 'first_name'}}
+          {{f.text-field 'last_name' fieldClasses='ml-4'}}
+        </div>
+
+        <div class='layout-row'>
+          <div class='flex-100'>
+            {{f.email-field 'email'}}
+          </div>
+        </div>
+
+        {{f.password-field 'password' hint='Password must be atleast 8 characters long'}}
+
+        <div class='flex justify-center'>
+          {{f.submit 'Sign up' class='w-4/5 mt-10'}}
+        </div>
+
+        <div class='flex justify-center'>
+          <button class='btn-secondary hover:btn-secondary-hover w-4/5'>
+            Already have an account?
+          </button>
+        </div>
+      {{/form-for}}
+    </div>
+  </div>
+</div>
