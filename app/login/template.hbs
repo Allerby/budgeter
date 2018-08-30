@@ -1,12 +1,50 @@
-{{#if (or session.isAuthenticated firebaseSession.isAuthenticated)}}
+<div class='flex items-center relative min-h-screen justify-center'>
+  <div style='width: 597px' class='relative'>
+    <div id='register_form' class='bg-white p-8 rounded-sm mx-auto sm:w-full'>
 
-  Already signed in.
+      <div class='flex justify-center'>
+        {{#link-to 'home'}}
+          <img style='width: 100px;' src='logo@2x.png' />  
+        {{/link-to}}
+      </div>
+      
+      <div class='flex justify-center'>
+        {{google-button type='login'}}
+      </div>
 
-{{else}}
+      <div class='flex mt-6'>
+        <hr class='border-t flex-grow border-shade-3'>
+        <p class='ml-6 mr-6 text-sm text-primary-2'>or</p>
+        <hr class='border-t flex-grow border-shade-3'>
+      </div>
 
-  <button id="google__signin" disabled={{signIn.isRunning}} onClick={{perform signIn "google"}}>
-    <img class="icon" src="/google-g.png"/>
-    <span class="buttonText">{{if signIn.isRunning 'Signing you in' 'Sign in with Google'}}</span>
-  </button>
+      <div class='mt-4'>
+        {{#form-for model as |f|}}
+          <div class='layout-row'>
+            <div class='flex-100'>
+              {{f.email-field 'email'}}
+            </div>
+          </div>
 
-{{/if}}
+          {{f.password-field 'password'}}
+
+          {{#if error}}
+            {{error}}
+          {{/if}}
+
+          <div class='flex justify-center'>
+            {{f.submit 'Log me in' action=(perform signIn) class='w-4/5 mt-10 z-10'}}
+          </div>
+
+          <div class='flex justify-center'>
+            {{#link-to 'register' class='btn-secondary hover:btn-secondary-hover w-4/5 z-10 text-center no-underline appearance-none'}}
+              Don't have an account
+            {{/link-to}}
+          </div>
+        {{/form-for}}
+      </div>
+    </div>
+    <div class='block sm:block hidden' style='height: 190px'></div>
+    <img class='absolute sm:block pin-b hidden' src='img-reg-people.png' />
+  </div>
+</div>

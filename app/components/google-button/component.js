@@ -1,13 +1,24 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { task } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  classNames: 'text-primary-2 relative rounded border mt-10 p-4 w-4/5',
+  session: service(),
+  
+  classNames: 'text-primary-2 relative rounded border p-4 w-4/5',
   tagName: 'button',
 
-  actions: {
-    authenticate() {
-      
-    },
+  click() {
+    if (this.type === 'login') {
+      this.get('signInWithGoogle').perform('google');
+    } else if (this.type === 'register') {
+      debugger;
+    }
   },
+
+  signInWithGoogle: task(function * (provider) {
+    return yield this.session.authenticate('authenticator:torii', provider).catch((reason) => {
+      console.log('errorMessage', reason);
+    });
+  }),
 });
