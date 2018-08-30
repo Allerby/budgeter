@@ -41,11 +41,11 @@ module.exports = function(environment) {
     fieldClasses: [''],
     fieldErrorClass: '',
     errorClasses: [''],
-    hintClasses: ['font-thin text-sm text-primary-2 block mt-2 text-center'],
+    hintClasses: ['font-thin text-xs text-primary-2 block mt-2 text-center'],
     inputClasses: ['border rounded-sm h-12 mt-1 text-primary-2 focus:border-primary-1 p-4 w-full'],
     labelClasses: ['font-thin text-sm block text-primary-2 mt-4'],
     resetClasses: [''],
-    submitClasses: ['rounded bg-primary-1 p-4 text-white hover:btn-primary-hover']
+    submitClasses: ['rounded bg-primary-1 p-3 text-white hover:btn-primary-hover leading-normal']
   };
 
   ENV['ember-simple-auth'] = {

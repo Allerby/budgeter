@@ -17,5 +17,5 @@
 */
 
 .btn-secondary {
-  @apply .rounded .text-primary-1 .p-4 bg-white
+  @apply .rounded .text-primary-1 .p-3 .bg-white .leading-normal
 }

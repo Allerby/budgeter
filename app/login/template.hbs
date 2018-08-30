@@ -1,14 +1,12 @@
 <div class='flex items-center relative min-h-screen justify-center'>
-  <div style='width: 597px' class='relative'>
-    <div id='register_form' class='bg-white p-8 rounded-sm mx-auto sm:w-full'>
+  <div style='width: 578px' class='relative'>
+    <div id='register_form' class='bg-white px-8 pt-8 pb-4 mt-8 rounded-sm mx-auto sm:w-full'>
 
-      <div class='flex justify-center'>
-        {{#link-to 'home'}}
-          <img style='width: 100px;' src='logo@2x.png' />  
-        {{/link-to}}
-      </div>
+      <h2 class='text-xl font-semibold text-center text-primary-2'>
+        Log in
+      </h2>
       
-      <div class='flex justify-center'>
+      <div class='flex justify-center mt-6'>
         {{google-button type='login'}}
       </div>
 
@@ -18,14 +16,9 @@
         <hr class='border-t flex-grow border-shade-3'>
       </div>
 
-      <div class='mt-4'>
+      <div class='mt-6'>
         {{#form-for model as |f|}}
-          <div class='layout-row'>
-            <div class='flex-100'>
-              {{f.email-field 'email'}}
-            </div>
-          </div>
-
+          {{f.email-field 'email'}}
           {{f.password-field 'password'}}
 
           {{#if error}}
@@ -33,18 +26,18 @@
           {{/if}}
 
           <div class='flex justify-center'>
-            {{f.submit 'Log me in' action=(perform signIn) class='w-4/5 mt-10 z-10'}}
+            {{f.submit 'Log me in' action=(perform signIn) class='w-3/5 mt-8 z-10'}}
           </div>
 
           <div class='flex justify-center'>
-            {{#link-to 'register' class='btn-secondary hover:btn-secondary-hover w-4/5 z-10 text-center no-underline appearance-none'}}
-              Don't have an account
+            {{#link-to 'register' class='btn-secondary hover:btn-secondary-hover w-3/5 z-10 text-center no-underline appearance-none'}}
+              Don't have an account?
             {{/link-to}}
           </div>
         {{/form-for}}
       </div>
     </div>
-    <div class='block sm:block hidden' style='height: 190px'></div>
+    <div class='block sm:block hidden' style='height: 153px'></div>
     <img class='absolute sm:block pin-b hidden' src='img-reg-people.png' />
   </div>
 </div>
