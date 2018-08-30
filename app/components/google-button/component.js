@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   session: service(),
   
-  classNames: 'text-primary-2 relative leading-normal rounded border p-3 w-3/5',
+  classNames: 'flex hover:btn-google-hover hover:text-primary-3 transition text-primary-2 relative justify-center items-center leading-normal rounded border p-3 w-3/5',
   tagName: 'button',
 
   click() {

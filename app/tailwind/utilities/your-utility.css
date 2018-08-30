@@ -25,4 +25,11 @@
   .btn-secondary-hover {
     @apply .text-primary-3
   }
+  .btn-google-hover {
+    box-shadow: rgba(159, 163, 185, 0.6) 0px 10px 16px -8px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+  }
+}
+
+.transition {
+  transition: all 0.4s;
 }
