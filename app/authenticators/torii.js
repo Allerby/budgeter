@@ -6,10 +6,16 @@ export default ToriiAuthenticator.extend({
   torii: service(),
   firebaseSession: service(),
 
-  authenticate(provider, options) {
-    if (provider === 'google') {
+  authenticate(options) {
+    if (options.provider === 'google') {
       return new RSVP.Promise((resolve, reject) => {
-        this.get('firebaseSession').open('firebase', { provider: 'google' }).then((authData) => {
+        this.get('firebaseSession').open('firebase', { provider: options.provider }).then((authData) => {
+          resolve(authData);
+        });
+      });
+    } if (options.provider === 'password') {
+      return new RSVP.Promise((resolve, reject) => {
+        this.get('firebaseSession').open('firebase', options).then((authData) => {
           resolve(authData);
         });
       });

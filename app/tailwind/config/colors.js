@@ -33,6 +33,14 @@ export default {
   'primary-4': '#1b1b2e',
 
   'primary-1-hover': '#443ce9',
+  'primary-disabled': '#b2b6cd',
+
+  // Category colors
+  'leisure': '#b248ff',
+  'food': '#ff1f72',
+  'lifestyle': '#fea900',
+  'housing': '#48bdff',
+  'income': '#0ac887',
 
   'shade-1': '#f7f9fa',
   'shade-2': '#f5f6fa', // Background

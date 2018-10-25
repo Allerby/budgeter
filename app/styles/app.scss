@@ -1,7 +1,36 @@
 @import 'tailwind';
-
-@import "reset";
+@import 'reset';
+@import 'typography';
 // @import "pod-styles";
+@import 'power-select';
+
+.ember-power-select-option[aria-selected='true'] {
+  color: #605f88;
+}
+
+@import 'ember-power-select';
+
+.ember-power-select-placeholder, .ember-power-select-selected-item {
+  margin-left: 0px !important;
+}
+
+.ember-power-select-status-icon {
+  background-image: url(/icons/ic-arrowdown@3x.png);
+  border: 0px;
+  display: block;
+  height: 8px;
+  width: 13px;
+  background-size: cover;
+  right: 10px;
+}
+
+.ember-power-select-dropdown {
+  box-shadow: rgba(159, 163, 185, 0.4) 0px 24px 44px -12px, rgba(0, 0, 0, 0) 0 0 0 0;
+}
+
+.ember-power-select-options {
+  padding: 8px;
+}
 
 #register_form {
   width: 464px;

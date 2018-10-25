@@ -17,5 +17,25 @@
 */
 
 .btn-secondary {
-  @apply .rounded .text-primary-1 .p-3 .bg-white .leading-normal
+  @apply .rounded .text-primary-1 .p-3 .leading-normal
+}
+
+.btn-primary {
+  @apply .rounded .text-white .p-3 .bg-primary-1 .leading-normal .transition
+}
+
+.btn-primary.disabled, button[disabled], button:disabled, button:disabled:hover {
+  @apply .bg-primary-disabled
+}
+
+.body-1 {
+  @apply .font-thin .leading-body-1
+}
+
+.icon {
+  @apply .w-6 .h-6 .block .bg-contain
+}
+
+.check {
+  background-image: url('/icons/tick-dark@2x.png');
 }

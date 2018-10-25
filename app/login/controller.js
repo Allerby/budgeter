@@ -1,14 +1,15 @@
 import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
+import { getProperties } from '@ember/object';
 
 export default Controller.extend({
   session: service(),
 
   signIn: task(function * () {
-    let { email, password } = this.model.getProperties('email', 'password');
+    let { email, password } = getProperties(this.model, 'email', 'password');
 
-    return yield this.session.authenticate('authenticator:application', {
+    return yield this.session.authenticate('authenticator:torii', {
       'provider': 'password',
       'email': email,
       'password': password,

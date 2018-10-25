@@ -17,7 +17,7 @@ export default Component.extend({
   },
 
   signInWithGoogle: task(function * (provider) {
-    return yield this.session.authenticate('authenticator:torii', provider).catch((reason) => {
+    return yield this.session.authenticate('authenticator:torii', {'provider': provider}).catch((reason) => {
       console.log('errorMessage', reason);
     });
   }),

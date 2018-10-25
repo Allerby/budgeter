@@ -28,6 +28,16 @@
   .btn-google-hover {
     box-shadow: rgba(159, 163, 185, 0.6) 0px 10px 16px -8px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
   }
+  .card-hover {
+    box-shadow: rgba(159, 163, 185, 0.4) 0px 24px 44px -12px, rgba(0, 0, 0, 0) 0 0 0 0;
+    cursor: pointer;
+  }
+}
+
+@variants group-hover {
+  .btn-primary-hover {
+    background-color: #443ce9;
+  }
 }
 
 .transition {

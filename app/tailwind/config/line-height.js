@@ -13,6 +13,7 @@
 export default {
   none: 1,
   tight: 1.25,
+  'body-1': 1.35,
   normal: 1.5,
   loose: 2
 };

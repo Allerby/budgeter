@@ -4,10 +4,17 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Route.extend(ApplicationRouteMixin, {
   firebaseSession: service(),
+  currentUser: service(),
   session: service(),
 
   beforeModel: function() {
     return this.firebaseSession.fetch().catch(function() {});
+  },
+
+  model() {
+    return this.store.findRecord('user', 1).then((user) => {
+      this.currentUser.set('user', user);
+    });
   },
 
   sessionAuthenticated() {
@@ -20,7 +27,7 @@ export default Route.extend(ApplicationRouteMixin, {
       this.session.set('previousTransition', null);
       previousTransition.retry();
     } else {
-      this.transitionTo('home');
+      this.transitionTo('setup.upload');
     }
   },
 });
