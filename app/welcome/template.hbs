@@ -31,6 +31,6 @@
   </div>
 
   <div class='flex justify-center mt-14'>
-    <button class='btn-primary w-56'>Next</button>
+    {{#link-to 'setup.upload' class='btn-primary w-56 text-center no-underline hover:btn-primary-hover transition' disabled=(not option)}}Next{{/link-to}}
   </div>
 </div>

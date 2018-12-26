@@ -1,5 +1,5 @@
-<div class='flex h-screen flex-row'>
-  <div class='bg-primary-4 flex-none' style='width: 216px'>
+<div class='flex h-screen flex-row {{if selectCategory 'blur'}}'>
+  <div id='navigation' class='bg-primary-4 flex-none' style='width: 216px'>
     <img class='w-24 block mx-auto mt-8' src='/logo@2x.png' />
 
     <div class='ml-4 mr-4'>
@@ -12,12 +12,12 @@
 
       <div class='flex justify-between h-6 mt-6 text-white leading-normal'>
         <p>Upload CSV</p>
-        <p>{{if (gt currentUser.user.csv_uploads.length 0) '100%' ''}}</p>
+        <p>{{if (gt currentUser.user.csv_uploads.length 0) '100' '0'}}%</p>
       </div>
 
       <div class='flex justify-between h-6 mt-6 text-white leading-normal'>
         <p class='opacity-25'>Categorise</p>
-        <p class='opacity-25'>0%</p>
+        <p class='opacity-25'>{{progressPercentage}}</p>
       </div>
     </div>
   </div>
@@ -26,3 +26,7 @@
     {{outlet}}
   </div>
 </div>
+
+{{#if selectCategory}}
+  {{category-picker selectCategory=selectCategory}}
+{{/if}}

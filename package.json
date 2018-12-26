@@ -43,6 +43,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
+    "ember-set-body-class": "^0.4.1",
     "ember-simple-auth": "^1.6.0",
     "ember-source": "~3.1.0",
     "ember-truth-helpers": "^2.0.0",
@@ -56,6 +57,7 @@
   },
   "dependencies": {
     "ember-component-css": ">= 0.6.4",
+    "ember-composable-helpers": "^2.1.0",
     "ember-power-select": "^2.0.5",
     "papaparse": "^4.4.0"
   }

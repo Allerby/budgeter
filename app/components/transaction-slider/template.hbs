@@ -1,0 +1,21 @@
+<div class='flex flex-row'>
+  <div class='flex flex-col justify-center items-center bg-white mt-22 p-16 pb-8 relative rounded'>
+    <div class='border border-shade-3 absolute rounded-full w-20 h-20 pin-t bg-white -mt-10 flex items-center'>
+      <img src='/icons/ic-coffee.png' srcset='/icons/ic-coffee@2x.png 2x,/icons/ic-coffee@3x.png 3x' class='flex mx-auto h-10 w-10'>
+    </div>
+    <div class='py-2 px-4 bg-food text-white rounded-full'>
+      {{currentGroupName}}
+    </div>
+    <p class='text-center body-1 text-primary-2 mt-4 mt-8'>
+      We found <b class='font-bold'>{{currentGroupLength}} transactions</b> with the keyword <b class='font-bold'>"{{currentGroupName}}"</b><br> We reckon this one comes under {{currentGroupName}}.
+    </p>
+    <div class='flex flex-row mt-8'>
+      <button class='btn-secondary hover:btn-secondary-hover w-56' {{action 'chooseAnotherCategory'}}>
+        Choose another category
+      </button>
+      <button class='btn-primary hover:btn-primary-hover ml-2 w-56' {{action 'tag'}}>
+        Tag as {{currentGroupName}}
+      </button>
+    </div>
+  </div>
+</div>

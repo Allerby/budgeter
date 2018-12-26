@@ -1,10 +1,10 @@
 <div class='overflow-hidden relative group'>
-  <button class='btn-primary group-hover:btn-primary-hover transition w-56' disabled={{disabled}}>
+  <button class='btn-primary group-hover:btn-primary-hover transition w-56 {{if disabled 'disabled'}}' disabled={{disabled}}>
     {{#if (gt upload.performCount 0)}}
       <span>Uploaded</span>
     {{else}}
       <span>Upload CSV</span>
     {{/if}}
   </button>
-  <input class='cursor-pointer absolute block opacity-0 w-56 pin-l pt-12 pin-t' disabled={{disabled}} type='file' multiple>
+  <input class='cursor-pointer group-hover:btn-primary-hover absolute block opacity-0 w-56 pin-l pt-12 pin-t' disabled={{disabled}} type='file' multiple>
 </div>

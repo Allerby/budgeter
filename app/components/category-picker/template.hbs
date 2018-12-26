@@ -1,0 +1,30 @@
+<div class='flex flex-col relative'>
+  <div class='flex flex-col h-full justify-center'>
+
+    <div class='flex flex-col'>
+      <img 
+        src='/icons/ic-plus.png'
+        srcset='/icons/ic-plus@2x.png 2x,/icons/ic-plus@3x.png 3x'
+        class='bg-white rounded-full p-3 mx-auto' 
+      />
+      <a href='#' class='text-center no-underline text-primary-1  mt-4'>Create a new tag</a>
+    </div>
+
+    <div class='flex flex-col absolute text-center' style='right: -120px'>
+      <img 
+        src='/icons/ic-coffee.png'
+        srcset='/icons/ic-coffee@2x.png 2x,/icons/ic-coffee@3x.png 3x'
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3' 
+      />
+      <span class='text-primary-3 mt-4'>Food & Drink</span>
+    </div>
+
+  </div>
+  <div class='flex flex-1 mb-14'>
+    <div class='flex w-full flex-col-reverse'>
+      <div class='mx-auto'>
+        <button class='btn-primary hover:btn-primary-hover w-56' {{action 'closeCategories'}}>Close categories</button>
+      </div>
+    </div>
+  </div>
+</div>

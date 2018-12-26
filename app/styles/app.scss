@@ -38,3 +38,17 @@
     width: 100%;
   }
 }
+
+.blur {
+  filter: blur(45px);
+  -webkit-filter: blur(45px);
+  background-color: #fff;
+  #navigation {
+    position: fixed;
+    transform: scale(1.5);
+    height: 100%;
+    left: -100px;
+    background-color: rgba(27, 27, 46, 0.8);
+    z-index: 9;
+  }
+}

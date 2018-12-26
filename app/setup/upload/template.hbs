@@ -2,8 +2,14 @@
   <h1 class='text-center text-primary-2 mt-10'>Let’s take a look at your spending</h1>
   <p class='text-center body-1 text-primary-2 mt-4'>We need some information first, this will help us understand your spending habits. <br>Upload your CSV for the last 12 months below</p>
 
-  <div class='flex justify-center items-center mt-22'>
-    <h2 class='text-primary-2 mr-4'>I bank with</h2>
+  <div class='flex justify-end items-center mt-22'>
+    <h2 class='text-primary-2 mr-4'>
+      {{#if (gt currentUser.user.csv_uploads.length 0)}}
+        I also bank with
+      {{else}}
+        I bank with
+      {{/if}}
+    </h2>
     <div class='w-56 mr-4'>
       {{#power-select
         searchEnabled=false
@@ -27,7 +33,7 @@
   </div>
 
   {{#each currentUser.user.csv_uploads as |upload|}}
-    <div class='flex justify-center items-center mt-4'>
+    <div class='flex justify-end items-center mt-4'>
       <h2 class='text-primary-2 mr-4'>I bank with</h2>
       <div class='w-56 mr-4'>
         {{#power-select

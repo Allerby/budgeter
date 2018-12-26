@@ -25,7 +25,7 @@
 }
 
 .btn-primary.disabled, button[disabled], button:disabled, button:disabled:hover {
-  @apply .bg-primary-disabled
+  @apply .bg-primary-disabled .cursor-not-allowed
 }
 
 .body-1 {

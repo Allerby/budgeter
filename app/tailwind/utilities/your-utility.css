@@ -38,6 +38,10 @@
   .btn-primary-hover {
     background-color: #443ce9;
   }
+  .btn-primary-hover.disabled {
+    background-color: #b2b6cd;
+    cursor: not-allowed;
+  }
 }
 
 .transition {

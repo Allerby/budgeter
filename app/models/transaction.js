@@ -1,14 +1,16 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  amount: DS.attr('number'),
   date: DS.attr('date'),
-  particulars: DS.attr('string'),
-  reference: DS.attr('string'),
-  details: DS.attr('string'),
   code: DS.attr('string'),
+  amount: DS.attr('number'),
+  details: DS.attr('string'),
+  reference: DS.attr('string'),
+  particulars: DS.attr('string'),
   transaction_type: DS.attr('string'),
+  category: DS.attr('string'),
+  prospective_category: DS.attr('string'),
 
   user: DS.belongsTo('user'),
-  user: DS.belongsTo('csv_upload'),
+  csv_upload: DS.belongsTo('csv_upload'),
 });
