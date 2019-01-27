@@ -1,30 +1,126 @@
-<div class='flex flex-col relative'>
-  <div class='flex flex-col h-full justify-center'>
+{{set-body-class 'overflow-hidden'}}
 
-    <div class='flex flex-col'>
+<div class='w-full h-full flex flex-col justify-center'>
+  <div class='relative w-72 mx-auto flex flex-col h-full justify-center' style='max-height: 700px;'>
+    
+    {{!-- Create a new tag --}}
+    <div class='mx-auto flex flex-col group'>
       <img 
         src='/icons/ic-plus.png'
         srcset='/icons/ic-plus@2x.png 2x,/icons/ic-plus@3x.png 3x'
-        class='bg-white rounded-full p-3 mx-auto' 
+        class='bg-white rounded-full p-3 mx-auto border border-shade-3 transition group-hover:icon-hover' 
       />
-      <a href='#' class='text-center no-underline text-primary-1  mt-4'>Create a new tag</a>
+      <a href='#' class='text-center no-underline text-primary-1 mt-4 group-hover:btn-secondary-hover transition'>Create a new tag</a>
     </div>
 
-    <div class='flex flex-col absolute text-center' style='right: -120px'>
+    {{!-- Food and drink --}}
+    <div class='flex flex-col absolute text-center group' style='right: -120px;' {{action (toggle 'showFoodSubCat' this)}}>
       <img 
         src='/icons/ic-coffee.png'
         srcset='/icons/ic-coffee@2x.png 2x,/icons/ic-coffee@3x.png 3x'
-        class='bg-white rounded-full p-5 mx-auto border border-shade-3' 
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
       />
-      <span class='text-primary-3 mt-4'>Food & Drink</span>
+      <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Food & Drink</a>
+
+      <div class='{{if showFoodSubCat 'absolute' 'hidden'}}' style='left: 120px; top: -40px;'>
+        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Alcohol</span>
+        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Coffee</span>
+        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Groceries</span>
+        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Takeaways</span>
+      </div>
     </div>
 
-  </div>
-  <div class='flex flex-1 mb-14'>
-    <div class='flex w-full flex-col-reverse'>
-      <div class='mx-auto'>
-        <button class='btn-primary hover:btn-primary-hover w-56' {{action 'closeCategories'}}>Close categories</button>
+    {{!-- Lifestyle --}}
+    <div class='flex flex-col absolute text-center group' style='bottom: 50px; right: -20px;' {{action (toggle 'showLifestyleSubCat' this)}}>
+      <img 
+        src='/icons/ic-clothes.png'
+        srcset='/icons/ic-clothes@2x.png 2x,/icons/ic-clothes@3x.png 3x'
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+      />
+      <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Lifestyle</a>
+
+      <div class='{{if showLifestyleSubCat 'absolute' 'hidden'}}' style='left: -130px; top: 150px; width: 350px;'>
+        <div class='flex justify-center'>
+          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left'>Clothes</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left'>Insurance</span>
+          <span class='py-3 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left'>Loan</span>
+        </div>
+        <div class='flex justify-center'>
+          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial'>Makeup</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial'>Student Loan</span>
+          <span class='py-3 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial'>Travel</span>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Housing --}}
+    <div class='flex flex-col absolute text-center group' style='bottom: 50px; left: -20px;' {{action (toggle 'showHousingSubCat' this)}}>
+      <img 
+        src='/icons/ic-rent.png'
+        srcset='/icons/ic-rent@2x.png 2x,/icons/ic-rent@3x.png 3x'
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+      />
+      <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Housing</a>
+
+      <div class='{{if showHousingSubCat 'absolute' 'hidden'}}' style='right: -130px; top: 150px; width: 350px;'>
+        <div class='flex justify-center'>
+          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left'>Electricity</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left'>Housing</span>
+          <span class='py-3 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left'>Internet</span>
+        </div>
+        <div class='flex justify-center'>
+          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Mortgage</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Phone</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Rent</span>
+          <span class='py-3 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Water</span>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Leisure --}}
+    <div class='flex flex-col absolute text-center group' style='top: 50px; left: 105px;' {{action (toggle 'showLeisureSubCat' this)}}>
+      <img 
+        src='/icons/ic-cinema.png'
+        srcset='/icons/ic-cinema@2x.png 2x,/icons/ic-cinema@3x.png 3x'
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+      />
+      <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Leisure</a>
+
+      <div class='{{if showLeisureSubCat 'absolute' 'hidden'}}' style='left: -130px; top: -130px;'>
+        <div class='flex justify-center'>
+          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left'>Cinema</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left'>Electronics</span>
+          <span class='py-3 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left'>Entertainment</span>
+        </div>
+        <div class='flex justify-center'>
+          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial'>Gym</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial'>Hobby</span>
+          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial'>Subscription</span>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Income --}}
+    <div class='flex flex-col absolute text-center group' style='left: -120px;' {{action (toggle 'showIncomeSubCat' this)}}>
+      <img 
+        src='/icons/ic-salary.png'
+        srcset='/icons/ic-salary@2x.png 2x,/icons/ic-salary@3x.png 3x'
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+      />
+      <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Income</a>
+
+      <div class='{{if showIncomeSubCat 'absolute' 'hidden'}}' style='left: -150px; top: -80px; width: 120px;'>
+        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Income</span>
+        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Interest</span>
+        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Investments</span>
+        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Salary</span>
+        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Savings</span>
+        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Transfer</span>
       </div>
     </div>
   </div>
+</div>
+
+<div class='mb-14 mx-auto'>
+  <button class='btn-primary hover:btn-primary-hover w-56 mx-auto' {{action 'closeCategories'}}>Close categories</button>
 </div>

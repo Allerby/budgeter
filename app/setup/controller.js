@@ -29,7 +29,12 @@ export default Controller.extend({
 
   progressPercentage: computed('uncategorisedTransactions', 'currentTransactionGroup', 'groupedTransactions', function() {
     let length = Object.keys(this.groupedTransactions).length;
-    return `${Math.round((this.currentTransactionGroup / length) * 100)}%`;
+    let percentage = Math.round((this.currentTransactionGroup / length) * 100)
+    
+    if (percentage == 100) {
+      return `<i class="icon check"></i>`.htmlSafe();
+    }
+    return `${percentage}%`;
   }),
 
   groupedTransactions: computed('uncategorisedTransactions', function() {

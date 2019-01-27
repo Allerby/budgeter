@@ -20,6 +20,10 @@ export default Component.extend({
     return this.currentTransactions.length;
   }),
 
+  categoryIconPath: computed('transaction.prospective_category', function() {
+    return `/icons/ic-${transaction.prospective_category}.png`;
+  }),
+
   actions: {
     tag() {
       let transactions = this.currentTransactions.map((transaction) => { 

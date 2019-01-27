@@ -32,15 +32,26 @@
     box-shadow: rgba(159, 163, 185, 0.4) 0px 24px 44px -12px, rgba(0, 0, 0, 0) 0 0 0 0;
     cursor: pointer;
   }
+  .icon-hover {
+    box-shadow: rgba(159, 163, 185, 0.5) 0 10px 30px -7px, rgba(0, 0, 0, 0) 0 0 0 0;
+    cursor: pointer;
+  }
 }
 
 @variants group-hover {
   .btn-primary-hover {
     background-color: #443ce9;
   }
+  .btn-secondary-hover {
+    @apply .text-primary-3
+  }
   .btn-primary-hover.disabled {
     background-color: #b2b6cd;
     cursor: not-allowed;
+  }
+  .icon-hover {
+    box-shadow: rgba(159, 163, 185, 0.5) 0 10px 30px -7px, rgba(0, 0, 0, 0) 0 0 0 0;
+    cursor: pointer;
   }
 }
 
