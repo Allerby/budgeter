@@ -38,7 +38,6 @@ module.exports = function(environment) {
       // when it is created
     },
     'ember-simple-auth-token': {
-      serverTokenEndpoint: 'http://localhost:4200/api/session',
       refreshAccessTokens: false
     }
   };
@@ -83,9 +82,11 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.DS.host = 'https://gemino-api.herokuapp.com'
-    
+
     // here you can enable a production-specific feature
   }
+
+  ENV['ember-simple-auth-token'].serverTokenEndpoint = `${ENV.DS.host}/api/session`;
 
   return ENV;
 };
