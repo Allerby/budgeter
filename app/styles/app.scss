@@ -42,7 +42,8 @@
 .blur {
   filter: blur(45px);
   -webkit-filter: blur(45px);
-  background-color: #fff;
+  // background-color: #fff;
+  background-color: rgba(237, 239, 255, 0.2);
   #navigation {
     position: fixed;
     transform: scale(1.5);

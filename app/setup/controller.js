@@ -1,19 +1,20 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import controller from '../welcome/controller';
+import { computed, set } from '@ember/object';
+import groupBy from 'budgeter/utils/group-by';
 
 export default Controller.extend({
   currentUser: service(),
+  session: service(),
 
   queryParams: {
-    currentTransactionId: {
-      refreshModel: true,
-    },
     currentTransactionGroup: {
       refreshModel: true,
     },
     selectCategory: {
+      refreshModel: false,
+    },
+    createNewTag: {
       refreshModel: false,
     },
   },
@@ -21,6 +22,7 @@ export default Controller.extend({
   currentTransactionId: 0,
   currentTransactionGroup: 0,
   selectCategory: false,
+  createNewTag: false,
 
   uncategorisedTransactions: computed('model', function() {
     // Will need to filter by current user id
@@ -37,21 +39,34 @@ export default Controller.extend({
     return `${percentage}%`;
   }),
 
-  groupedTransactions: computed('uncategorisedTransactions', function() {
-    return this.groupBy(this.uncategorisedTransactions, transaction => transaction.prospective_category);
+  groupedTransactions: computed('uncategorisedTransactions', 'uncategorisedTransactions.@each.prospective_category', function() {
+    let transactions = groupBy(this.uncategorisedTransactions, transaction => transaction.prospective_category);
+    return transactions;
   }),
 
-  groupBy(list, keyGetter) {
-    let obj = Object.create(null);
-    list.forEach((item) => {
-      const key = keyGetter(item);
-      const collection = obj[key];
-      if (!collection) {
-        obj[key] = [item]
-      } else {
-        collection.push(item);
-      }
-    });
-    return obj;
+  // This code is almost duplicated in transaction slide component. Need to define this up higher.
+  currentTransactions: computed('model', 'currentTransactionGroup', function() {
+    return Object.values(this.groupedTransactions)[this.currentTransactionGroup]
+  }),
+
+  actions: {
+    logout(e) {
+      e.preventDefault();
+      this.session.invalidate();
+    },
+    changeCategory(category) {
+      let transactions = this.currentTransactions.map((transaction) => { 
+        transaction.set('prospective_category', category);
+        transaction.save();
+      });
+      
+      Promise.all(transactions).then(() => {
+        set('selectCategory', false);
+      });
+    },
+    openTagCreate() {
+      set('selectCategory', false);
+      set('createNewTag', true);
+    }
   },
 });

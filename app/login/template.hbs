@@ -21,8 +21,10 @@
           {{f.email-field 'email'}}
           {{f.password-field 'password'}}
 
-          {{#if error}}
-            {{error}}
+          {{#if errors}}
+            {{#each errors as |error|}}
+              <span class='font-normal text-xs text-error block mt-1 text-center'>{{error.detail}}</span>
+            {{/each}}
           {{/if}}
 
           <div class='flex justify-center'>

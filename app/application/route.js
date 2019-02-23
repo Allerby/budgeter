@@ -7,17 +7,19 @@ export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
   session: service(),
 
-  beforeModel: function() {
-    return this.firebaseSession.fetch().catch(function() {});
+  beforeModel() {
+    this._super(...arguments);
+    if (this.session.isAuthenticated) {
+      this.currentUser.load();
+    }
   },
 
-  model() {
-    return this.store.findRecord('user', 1).then((user) => {
-      this.currentUser.set('user', user);
-    });
+  sessionInvalidated() {
+    window.location.replace('/login');
   },
 
   sessionAuthenticated() {
+    this.currentUser.load();
     /* If a transition has been saved by AuthenticatedRouteMixin, call super to transition to it.
       Otherwise redirect to previous route saved by BaseRoute */
     if (this.get('session.attemptedTransition')) {

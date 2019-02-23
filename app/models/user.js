@@ -5,7 +5,6 @@ export default DS.Model.extend({
   last_name: DS.attr('string'),
   password: DS.attr('string'),
   email: DS.attr('string'),
-  user_id: DS.attr('string'),
   social_photo_url: DS.attr('string'),
 
   transactions: DS.hasMany('transaction'),

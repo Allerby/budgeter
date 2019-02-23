@@ -12,13 +12,15 @@ export default Component.extend({
     if (this.type === 'login') {
       this.get('signInWithGoogle').perform('google');
     } else if (this.type === 'register') {
-      debugger;
+      this.get('registerWithGoogle').perform('google');
     }
   },
 
   signInWithGoogle: task(function * (provider) {
-    return yield this.session.authenticate('authenticator:torii', {'provider': provider}).catch((reason) => {
-      console.log('errorMessage', reason);
-    });
+    return yield this.session.authenticate('authenticator:torii', {'provider': provider});
+  }),
+
+  registerWithGoogle: task(function * (provider) {
+    return yield this.session.authenticate('authenticator:torii', {'provider': provider});
   }),
 });

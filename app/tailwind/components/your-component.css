@@ -32,6 +32,10 @@
   @apply .font-thin .leading-body-1
 }
 
+.body-2 {
+  @apply .text-sm
+}
+
 .icon {
   @apply .w-6 .h-6 .block .bg-contain
 }

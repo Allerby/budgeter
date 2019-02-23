@@ -13,7 +13,6 @@ export default Route.extend({
 
   setupController(controller) {
     this._super(...arguments);
-    controller.set('groupedTransactions', this.controllerFor('setup').groupedTransactions);
     controller.set('currentTransactionGroup', this.paramsFor('setup').currentTransactionGroup);
     controller.set('selectCategory', this.paramsFor('setup').selectCategory);
   },

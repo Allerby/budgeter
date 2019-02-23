@@ -4,7 +4,7 @@
   <div class='relative w-72 mx-auto flex flex-col h-full justify-center' style='max-height: 700px;'>
     
     {{!-- Create a new tag --}}
-    <div class='mx-auto flex flex-col group'>
+    <div class='mx-auto flex flex-col group' onclick={{action createNewTag}}>
       <img 
         src='/icons/ic-plus.png'
         srcset='/icons/ic-plus@2x.png 2x,/icons/ic-plus@3x.png 3x'
@@ -14,108 +14,108 @@
     </div>
 
     {{!-- Food and drink --}}
-    <div class='flex flex-col absolute text-center group' style='right: -120px;' {{action (toggle 'showFoodSubCat' this)}}>
+    <div class='flex flex-col absolute text-center group' style='right: -120px;' {{action 'selectCategory' 'food'}}>
       <img 
         src='/icons/ic-coffee.png'
         srcset='/icons/ic-coffee@2x.png 2x,/icons/ic-coffee@3x.png 3x'
-        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover {{if (eq selectedCategory 'food') 'border-correct'}}' 
       />
       <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Food & Drink</a>
 
-      <div class='{{if showFoodSubCat 'absolute' 'hidden'}}' style='left: 120px; top: -40px;'>
-        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Alcohol</span>
-        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Coffee</span>
-        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Groceries</span>
-        <span class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left'>Takeaways</span>
+      <div class='{{if (eq selectedCategory 'food') 'absolute' 'hidden'}}' style='left: 120px; top: -40px;'>
+        <span onclick={{action changeCategory 'alcohol'}} class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left hover:pill-hover'>Alcohol</span>
+        <span onclick={{action changeCategory 'coffee'}} class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left hover:pill-hover'>Coffee</span>
+        <span onclick={{action changeCategory 'groceries'}} class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left hover:pill-hover'>Groceries</span>
+        <span onclick={{action changeCategory 'takeaways'}} class='py-3 mb-2 px-4 bg-food text-white rounded-full inline-block float-left hover:pill-hover'>Takeaways</span>
       </div>
     </div>
 
     {{!-- Lifestyle --}}
-    <div class='flex flex-col absolute text-center group' style='bottom: 50px; right: -20px;' {{action (toggle 'showLifestyleSubCat' this)}}>
+    <div class='flex flex-col absolute text-center group' style='bottom: 50px; right: -20px;' {{action 'selectCategory' 'lifestyle'}}>
       <img 
         src='/icons/ic-clothes.png'
         srcset='/icons/ic-clothes@2x.png 2x,/icons/ic-clothes@3x.png 3x'
-        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover {{if (eq selectedCategory 'lifestyle') 'border-correct'}}' 
       />
       <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Lifestyle</a>
 
-      <div class='{{if showLifestyleSubCat 'absolute' 'hidden'}}' style='left: -130px; top: 150px; width: 350px;'>
+      <div class='{{if (eq selectedCategory 'lifestyle') 'absolute' 'hidden'}}' style='left: -130px; top: 150px; width: 350px;'>
         <div class='flex justify-center'>
-          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left'>Clothes</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left'>Insurance</span>
-          <span class='py-3 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left'>Loan</span>
+          <span onclick={{action changeCategory 'clothes'}} class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left hover:pill-hover'>Clothes</span>
+          <span onclick={{action changeCategory 'insurance'}} class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left hover:pill-hover'>Insurance</span>
+          <span onclick={{action changeCategory 'loan'}} class='py-3 mb-2 px-4 bg-lifestyle text-white rounded-full inline-block float-left hover:pill-hover'>Loan</span>
         </div>
         <div class='flex justify-center'>
-          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial'>Makeup</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial'>Student Loan</span>
-          <span class='py-3 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial'>Travel</span>
+          <span onclick={{action changeCategory 'makeup'}} class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial hover:pill-hover'>Makeup</span>
+          <span onclick={{action changeCategory 'student loan'}} class='py-3 mr-2 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial hover:pill-hover'>Student Loan</span>
+          <span onclick={{action changeCategory 'travel'}} class='py-3 mb-2 px-4 bg-lifestyle text-white rounded-full flex flex-initial hover:pill-hover'>Travel</span>
         </div>
       </div>
     </div>
 
     {{!-- Housing --}}
-    <div class='flex flex-col absolute text-center group' style='bottom: 50px; left: -20px;' {{action (toggle 'showHousingSubCat' this)}}>
+    <div class='flex flex-col absolute text-center group' style='bottom: 50px; left: -20px;' {{action 'selectCategory' 'housing'}}>
       <img 
         src='/icons/ic-rent.png'
         srcset='/icons/ic-rent@2x.png 2x,/icons/ic-rent@3x.png 3x'
-        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover {{if (eq selectedCategory 'housing') 'border-correct'}}' 
       />
       <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Housing</a>
 
-      <div class='{{if showHousingSubCat 'absolute' 'hidden'}}' style='right: -130px; top: 150px; width: 350px;'>
+      <div class='{{if (eq selectedCategory 'housing') 'absolute' 'hidden'}}' style='right: -130px; top: 150px; width: 350px;'>
         <div class='flex justify-center'>
-          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left'>Electricity</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left'>Housing</span>
-          <span class='py-3 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left'>Internet</span>
+          <span onclick={{action changeCategory 'electricity'}} class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left hover:pill-hover'>Electricity</span>
+          <span onclick={{action changeCategory 'housing'}} class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left hover:pill-hover'>Housing</span>
+          <span onclick={{action changeCategory 'internet'}} class='py-3 mb-2 px-4 bg-housing text-white rounded-full inline-block float-left hover:pill-hover'>Internet</span>
         </div>
         <div class='flex justify-center'>
-          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Mortgage</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Phone</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Rent</span>
-          <span class='py-3 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial'>Water</span>
+          <span onclick={{action changeCategory 'mortgage'}} class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial hover:pill-hover'>Mortgage</span>
+          <span onclick={{action changeCategory 'phone'}} class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial hover:pill-hover'>Phone</span>
+          <span onclick={{action changeCategory 'rent'}} class='py-3 mr-2 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial hover:pill-hover'>Rent</span>
+          <span onclick={{action changeCategory 'water'}} class='py-3 mb-2 px-4 bg-housing text-white rounded-full flex flex-initial hover:pill-hover'>Water</span>
         </div>
       </div>
     </div>
 
     {{!-- Leisure --}}
-    <div class='flex flex-col absolute text-center group' style='top: 50px; left: 105px;' {{action (toggle 'showLeisureSubCat' this)}}>
+    <div class='flex flex-col absolute text-center group' style='top: 50px; left: 105px;' {{action 'selectCategory' 'leisure'}}>
       <img 
         src='/icons/ic-cinema.png'
         srcset='/icons/ic-cinema@2x.png 2x,/icons/ic-cinema@3x.png 3x'
-        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover {{if (eq selectedCategory 'leisure') 'border-correct'}}' 
       />
       <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Leisure</a>
 
-      <div class='{{if showLeisureSubCat 'absolute' 'hidden'}}' style='left: -130px; top: -130px;'>
+      <div class='{{if (eq selectedCategory 'leisure') 'absolute' 'hidden'}}' style='left: -130px; top: -130px;'>
         <div class='flex justify-center'>
-          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left'>Cinema</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left'>Electronics</span>
-          <span class='py-3 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left'>Entertainment</span>
+          <span onclick={{action changeCategory 'cinema'}} class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left hover:pill-hover'>Cinema</span>
+          <span onclick={{action changeCategory 'electronics'}} class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left hover:pill-hover'>Electronics</span>
+          <span onclick={{action changeCategory 'entertainment'}} class='py-3 mb-2 px-4 bg-leisure text-white rounded-full inline-block float-left hover:pill-hover'>Entertainment</span>
         </div>
         <div class='flex justify-center'>
-          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial'>Gym</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial'>Hobby</span>
-          <span class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial'>Subscription</span>
+          <span onclick={{action changeCategory 'gym'}} class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial hover:pill-hover'>Gym</span>
+          <span onclick={{action changeCategory 'hobby'}} class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial hover:pill-hover'>Hobby</span>
+          <span onclick={{action changeCategory 'subscription'}} class='py-3 mr-2 mb-2 px-4 bg-leisure text-white rounded-full flex flex-initial hover:pill-hover'>Subscription</span>
         </div>
       </div>
     </div>
 
     {{!-- Income --}}
-    <div class='flex flex-col absolute text-center group' style='left: -120px;' {{action (toggle 'showIncomeSubCat' this)}}>
+    <div class='flex flex-col absolute text-center group' style='left: -120px;' {{action 'selectCategory' 'income'}}>
       <img 
         src='/icons/ic-salary.png'
         srcset='/icons/ic-salary@2x.png 2x,/icons/ic-salary@3x.png 3x'
-        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover' 
+        class='bg-white rounded-full p-5 mx-auto border border-shade-3 transition group-hover:icon-hover {{if (eq selectedCategory 'income') 'border-correct'}}' 
       />
       <a href='#' class='no-underline text-primary-2 mt-4 group-hover:btn-secondary-hover transition'>Income</a>
 
-      <div class='{{if showIncomeSubCat 'absolute' 'hidden'}}' style='left: -150px; top: -80px; width: 120px;'>
-        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Income</span>
-        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Interest</span>
-        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Investments</span>
-        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Salary</span>
-        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Savings</span>
-        <span class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left'>Transfer</span>
+      <div class='{{if (eq selectedCategory 'income') 'absolute' 'hidden'}}' style='left: -150px; top: -80px; width: 120px;'>
+        <span onclick={{action changeCategory 'income'}} class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left hover:pill-hover'>Income</span>
+        <span onclick={{action changeCategory 'interest'}} class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left hover:pill-hover'>Interest</span>
+        <span onclick={{action changeCategory 'investments'}} class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left hover:pill-hover'>Investments</span>
+        <span onclick={{action changeCategory 'salary'}} class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left hover:pill-hover'>Salary</span>
+        <span onclick={{action changeCategory 'savings'}} class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left hover:pill-hover'>Savings</span>
+        <span onclick={{action changeCategory 'transfer'}} class='py-3 mb-2 px-4 bg-income text-white rounded-full inline-block float-left hover:pill-hover'>Transfer</span>
       </div>
     </div>
   </div>
