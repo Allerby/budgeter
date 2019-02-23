@@ -1,23 +1,56 @@
-@import "reset";
-@import "layout";
-@import "pod-styles";
-@import "mixins";
+@import 'tailwind';
+@import 'reset';
+@import 'typography';
+// @import "pod-styles";
+@import 'power-select';
 
-@include layouts_for_breakpoint();
-
-
-h1 {
-  text-align: center;
-  #site_header {
-    text-align: center;
-    color: #fa8184;
-    text-align: center;
-    text-decoration: none;
-  }  
+.ember-power-select-option[aria-selected='true'] {
+  color: #605f88;
 }
 
-.text-center {
-  text-align: center;
+@import 'ember-power-select';
+
+.ember-power-select-placeholder, .ember-power-select-selected-item {
+  margin-left: 0px !important;
 }
 
+.ember-power-select-status-icon {
+  background-image: url(/icons/ic-arrowdown@3x.png);
+  border: 0px;
+  display: block;
+  height: 8px;
+  width: 13px;
+  background-size: cover;
+  right: 10px;
+}
 
+.ember-power-select-dropdown {
+  box-shadow: rgba(159, 163, 185, 0.4) 0px 24px 44px -12px, rgba(0, 0, 0, 0) 0 0 0 0;
+}
+
+.ember-power-select-options {
+  padding: 8px;
+}
+
+#register_form {
+  width: 464px;
+  @media(max-width: 576px) {
+    width: 100%;
+  }
+}
+
+.blur {
+  filter: blur(45px);
+  -webkit-filter: blur(45px);
+  // background-color: #fff;
+  background-color: rgba(237, 239, 255, 0.2);
+  #navigation {
+    position: fixed;
+    transform: scale(1.5);
+    height: 100%;
+    left: -100px;
+    width: 240px !important;
+    background-color: rgba(27, 27, 46, 0.8);
+    z-index: 9;
+  }
+}

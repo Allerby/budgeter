@@ -1,0 +1,42 @@
+h1, h2, h3, h4, .body {
+  font-family: Overpass;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  // color: $primary-2;
+}
+
+h1 { 
+  font-size: 26px;
+  line-height: 33px;
+  font-weight: bold;
+}
+h2 { 
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 600;
+}
+h3 { 
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 26px;
+}
+h4 { 
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.body {
+  &__1 {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 21px;
+  }
+  &__2 {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+  }
+}
+

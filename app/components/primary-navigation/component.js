@@ -8,9 +8,8 @@ export default Component.extend({
 
   actions: {
     signOut: function() {
-      this.get('session').invalidate();
+      this.session.invalidate();
       this.firebaseSession.close();
-      this.router.transitionTo('login');
     },
   },
 });

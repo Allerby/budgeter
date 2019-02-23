@@ -1,21 +1,7 @@
-<div class="layout-column layout-align-center-center">
-  {{#if (eq selectedBank 'asb')}}
+<div class=''>
 
-    {{#each transactions.data as |data|}}
-      <p>{{data.Date}}, {{data.Payee}}, {{data.Memo}} : {{data.Amount}}</p>
-    {{/each}}
+  {{#each transactions as |transaction|}}
+    <p>{{transaction.particulars}} : {{transaction.reference}} - {{transaction.amount}}</p>
+  {{/each}}
 
-  {{else if (eq selectedBank 'bnz')}}
-
-    {{#each transactions.data as |data|}}
-      <p>{{get data 'Processed Date'}}, {{data.Payee}}, {{data.Code}} : {{data.Amount}}</p>
-    {{/each}}
-
-  {{else}}
-
-    {{#each transactions.data as |data|}}
-      <p>{{data.Type}}, {{data.Details}} : {{data.Amount}}</p>
-    {{/each}}
-
-  {{/if}}
 </div>

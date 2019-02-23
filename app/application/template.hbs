@@ -1,0 +1,16 @@
+<div class={{routeStyleNamespaceClassSet}}>
+  {{outlet}}
+
+  {{#if isConnecting}}
+    Loading...
+  {{else}}
+    <ul>
+      {{#each transactions as |t|}}
+        <li>Details: {{t.details}}</li>
+        <li>Particulars: {{t.particulars}}</li>
+        <li>Amount: {{t.amount}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
+</div>

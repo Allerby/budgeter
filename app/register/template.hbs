@@ -1,0 +1,53 @@
+<div class='flex items-center relative min-h-screen justify-center'>
+  <div style='width: 578px' class='relative'>
+    <div id='register_form' class='bg-white px-8 pt-8 pb-4 mt-8 rounded-sm mx-auto sm:w-full'>
+
+      <h2 class='text-xl font-semibold text-center text-primary-2'>
+        Create an account
+      </h2>
+      
+      <div class='flex justify-center mt-6'>
+        {{google-button type='register'}}
+      </div>
+
+      <div class='flex mt-6'>
+        <hr class='border-t flex-grow border-shade-3'>
+        <p class='ml-6 mr-6 text-sm text-primary-2'>or create an account</p>
+        <hr class='border-t flex-grow border-shade-3'>
+      </div>
+
+      <div class='mt-2'>
+        {{#form-for model as |f|}}
+          <div class='flex justify-between'>
+            {{f.text-field 'first_name'}}
+            {{f.text-field 'last_name' fieldClasses='ml-4'}}
+          </div>
+
+          <div class='layout-row'>
+            <div class='flex-100'>
+              {{f.email-field 'email' label='Email address'}}
+            </div>
+          </div>
+
+          {{f.password-field 'password' label='Create a password' hint='Password must be at least 8 characters long'}}
+
+          {{#if error}}
+            {{error}}
+          {{/if}}
+
+          <div class='flex justify-center'>
+            {{f.submit 'Sign up' action=(perform authenticate) class='w-3/5 mt-8 z-10'}}
+          </div>
+
+          <div class='flex justify-center'>
+            {{#link-to 'login' class='btn-secondary transition hover:btn-secondary-hover w-3/5 z-10 text-center no-underline appearance-none'}}
+              Already have an account?
+            {{/link-to}}
+          </div>
+        {{/form-for}}
+      </div>
+    </div>
+    <div class='block sm:block hidden' style='height: 153px'></div>
+    <img class='absolute sm:block pin-b hidden' src='/illustrations/img-reg-people@3x.png' />
+  </div>
+</div>

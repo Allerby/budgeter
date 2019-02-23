@@ -1,20 +1,33 @@
 import ToriiAuthenticator from 'ember-simple-auth/authenticators/torii';
 import { inject as service } from '@ember/service';
-import RSVP from 'rsvp';
+import RSVP, { reject } from 'rsvp';
 
 export default ToriiAuthenticator.extend({
   torii: service(),
-  firebaseSession: service(),
 
-  authenticate(provider, options) {
-    if (provider === 'google') {
-      return new RSVP.Promise((resolve, reject) => {
-        this.get('firebaseSession').open('firebase', { provider: 'google' }).then((authData) => {
-          resolve(authData);
-        });
+  authenticate(data) {
+    if (data.provider === 'google') {
+      return new RSVP.Promise((resolve) => {
+        return resolve(data);
+      }, () => {
+        return reject(data);
       });
-    } else {
-      reject('Authentication error');
     }
+  },
+
+  invalidate(data) {
+    return new RSVP.Promise((resolve) => {
+      return resolve(data);
+    }, () => {
+      return reject(data);
+    });
+  },
+  
+  restore(data) {
+    return new RSVP.Promise((resolve) => {
+      return resolve(data);
+    }, () => {
+      return reject(data);
+    });
   },
 });

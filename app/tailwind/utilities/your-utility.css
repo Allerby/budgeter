@@ -1,0 +1,64 @@
+/**
+ * You can create new utilities here.
+ *
+ * Feel free to rename this file, define multiple utilities here, or make
+ * any other files in this directory.
+
+ * Here's an example:
+**/
+
+/* .skew-45 {
+  transform: skewY(45deg);
+} */
+
+@variants focus {
+  .border-primary-1 {
+    outline: none;
+    border-color: #5b53ff;
+  }
+}
+
+@variants hover {
+  .btn-primary-hover {
+    background-color: #443ce9;
+  }
+  .btn-secondary-hover {
+    @apply .text-primary-3
+  }
+  .btn-google-hover {
+    box-shadow: rgba(159, 163, 185, 0.6) 0px 10px 16px -8px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+  }
+  .card-hover {
+    box-shadow: rgba(159, 163, 185, 0.4) 0px 24px 44px -12px, rgba(0, 0, 0, 0) 0 0 0 0;
+    cursor: pointer;
+  }
+  .icon-hover {
+    box-shadow: rgba(159, 163, 185, 0.5) 0 10px 30px -7px, rgba(0, 0, 0, 0) 0 0 0 0;
+    cursor: pointer;
+  }
+  .pill-hover {
+    filter: brightness(90%);
+    cursor: pointer;
+  }
+}
+
+@variants group-hover {
+  .btn-primary-hover {
+    background-color: #443ce9;
+  }
+  .btn-secondary-hover {
+    @apply .text-primary-3
+  }
+  .btn-primary-hover.disabled {
+    background-color: #b2b6cd;
+    cursor: not-allowed;
+  }
+  .icon-hover {
+    box-shadow: rgba(159, 163, 185, 0.5) 0 10px 30px -7px, rgba(0, 0, 0, 0) 0 0 0 0;
+    cursor: pointer;
+  }
+}
+
+.transition {
+  transition: all 0.4s;
+}

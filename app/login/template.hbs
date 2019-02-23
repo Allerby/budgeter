@@ -1,12 +1,45 @@
-{{#if session.isAuthenticated}}
+<div class='flex items-center relative min-h-screen justify-center'>
+  <div style='width: 578px' class='relative'>
+    <div id='register_form' class='bg-white px-8 pt-8 pb-4 mt-8 rounded-sm mx-auto sm:w-full'>
 
-  Already signed in.
+      <h2 class='text-xl font-semibold text-center text-primary-2'>
+        Log in
+      </h2>
+      
+      <div class='flex justify-center mt-6'>
+        {{google-button type='login'}}
+      </div>
 
-{{else}}
+      <div class='flex mt-6'>
+        <hr class='border-t flex-grow border-shade-3'>
+        <p class='ml-6 mr-6 text-sm text-primary-2'>or</p>
+        <hr class='border-t flex-grow border-shade-3'>
+      </div>
 
-  <button id="googleSignIn" disabled={{signIn.isRunning}} onClick={{perform signIn "google"}}>
-    <img class="icon" src="/google-g.png"/>
-    <span class="buttonText">{{if signIn.isRunning 'Signing you in' 'Sign in with Google'}}</span>
-  </button>
+      <div class='mt-6'>
+        {{#form-for model submit=(perform signIn) as |f|}}
+          {{f.email-field 'email'}}
+          {{f.password-field 'password'}}
 
-{{/if}}
+          {{#if errors}}
+            {{#each errors as |error|}}
+              <span class='font-normal text-xs text-error block mt-1 text-center'>{{error.detail}}</span>
+            {{/each}}
+          {{/if}}
+
+          <div class='flex justify-center'>
+            {{f.submit 'Log me in' class='w-3/5 mt-8 z-10'}}
+          </div>
+
+          <div class='flex justify-center'>
+            {{#link-to 'register' class='btn-secondary transition hover:btn-secondary-hover w-3/5 z-10 text-center no-underline appearance-none'}}
+              Forgot your password?
+            {{/link-to}}
+          </div>
+        {{/form-for}}
+      </div>
+    </div>
+    <div class='block sm:block hidden' style='height: 153px'></div>
+    <img class='absolute sm:block pin-b hidden' src='/illustrations/img-reg-people@3x.png' />
+  </div>
+</div>

@@ -23,12 +23,39 @@ module.exports = function(environment) {
       storageBucket: '',
     },
     torii: {
-      sessionServiceName: 'firebaseSession'
+      sessionServiceName: 'firebaseSession',
+      providers: {
+        'google': {
+          redirectUri: '/',
+        }
+      }
     },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    'ember-simple-auth-token': {
+      serverTokenEndpoint: 'http://localhost:4200/api/session',
+      refreshAccessTokens: false
     }
+  };
+
+  ENV['ember-form-for'] = {
+    buttonClasses: [''],
+    fieldClasses: [''],
+    fieldErrorClass: '',
+    errorClasses: ['font-normal text-xs text-error block mt-1 text-center'],
+    hintClasses: ['font-normal text-xs text-primary-2 block mt-2 text-center'],
+    inputClasses: ['border rounded-sm h-12 mt-1 text-primary-2 focus:border-primary-1 p-4 w-full'],
+    labelClasses: ['font-thin text-sm block text-primary-2 mt-4'],
+    resetClasses: [''],
+    submitClasses: ['rounded bg-primary-1 p-3 text-white hover:btn-primary-hover transition leading-normal']
+  };
+
+  ENV['ember-simple-auth'] = {
+    authenticationRoute: 'login',
+    routeAfterAuthentication: 'index',
+    routeIfAlreadyAuthenticated: 'index'
   };
 
   if (environment === 'development') {

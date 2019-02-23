@@ -1,21 +1,40 @@
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+import fetch from 'fetch';
 
 export default Component.extend({
+  firebaseSession: service(),
+  currentUser: service(),
+  store: service(),
+
+  classNames: [''],
+  multiple: true,
+  type: 'file',
+
+  change() {
+    this._super(...arguments);
+    this.upload.perform(...arguments);
+  },
+
   upload: task(function * (event) {
-    const file = event.target.files[0];
-    yield Papa.parse(file, { // eslint-disable-line
-      header: true,
-      beforeFirstChunk: (chunk) => {
-        if (this.selectedBank === 'asb') {
-          let start = chunk.search('Date,');
-          return chunk.slice(start, chunk.length);
-        }
-      },
-      complete: (results) => {
-        console.log(results);
-        this.set('transactions', results);
-      }
+    const csv = event.target.files[0];
+
+    let formData = new FormData();
+    formData.append('file', csv);
+    formData.append('bank', this.selectedBank);
+
+    let options = {
+      method: 'POST',
+      body: formData
+    };
+
+    yield fetch('/users/1/transactions/upload_transactions', options).then((response) => {
+      response
+        .json()
+        .then((results) => {
+          this.store.pushPayload(results);
+        });
     });
   }),
 });
