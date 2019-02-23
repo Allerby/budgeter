@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 import fetch from 'fetch';
 
 export default Component.extend({
-  firebaseSession: service(),
   currentUser: service(),
   store: service(),
 
@@ -29,7 +28,7 @@ export default Component.extend({
       body: formData
     };
 
-    yield fetch('/users/1/transactions/upload_transactions', options).then((response) => {
+    yield fetch('/api/users/1/transactions/upload_transactions', options).then((response) => {
       response
         .json()
         .then((results) => {

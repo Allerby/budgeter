@@ -2,6 +2,9 @@
 
 module.exports = function(environment) {
   let ENV = {
+    DS: {
+      host: 'http://localhost:4200'
+    },
     modulePrefix: 'budgeter',
     environment,
     rootURL: '/',
@@ -79,6 +82,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.DS.host = 'https://gemino-api.herokuapp.com'
+    
     // here you can enable a production-specific feature
   }
 

@@ -61,12 +61,12 @@ export default Controller.extend({
       });
       
       Promise.all(transactions).then(() => {
-        set('selectCategory', false);
+        set(this, 'selectCategory', false);
       });
     },
     openTagCreate() {
-      set('selectCategory', false);
-      set('createNewTag', true);
+      set(this, 'selectCategory', false);
+      set(this, 'createNewTag', true);
     }
   },
 });
