@@ -17,6 +17,10 @@
 export default {
   transparent: 'transparent',
 
+  'shade-1': '#f7f9fa',
+  'shade-2': '#f5f6fa', // Background
+  'shade-3': '#e1e1e6', // Form fields
+
   black: '#22292f',
   'grey-darkest': '#3d4852',
   'grey-darker': '#606f7b',
@@ -41,10 +45,6 @@ export default {
   'lifestyle': '#fea900',
   'housing': '#48bdff',
   'income': '#0ac887',
-
-  'shade-1': '#f7f9fa',
-  'shade-2': '#f5f6fa', // Background
-  'shade-3': '#e1e1e6', // Form fields
 
   error: '#ff5454',
   warning: '#ff9b4d',
