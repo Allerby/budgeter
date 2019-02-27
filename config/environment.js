@@ -81,8 +81,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.DS.host = 'https://gemino-api.herokuapp.com'
-
+    ENV.DS.host = process.env.API_HOST || 'https://gemino-api.herokuapp.com';
+    // const clientHost = process.env.CLIENT_HOST || 'https://gemino-app.herokuapp.com';
     // here you can enable a production-specific feature
   }
 

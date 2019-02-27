@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import fetch from 'fetch';
+import ENV from 'budgeter/config/environment';
 
 export default Component.extend({
   currentUser: service(),
@@ -25,10 +26,10 @@ export default Component.extend({
 
     let options = {
       method: 'POST',
-      body: formData
+      body: formData,
     };
 
-    yield fetch('/api/users/1/transactions/upload_transactions', options).then((response) => {
+    yield fetch(`${ENV.DS.host}/api/users/1/transactions/upload_transactions`, options).then((response) => {
       response
         .json()
         .then((results) => {
