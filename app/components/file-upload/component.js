@@ -29,7 +29,7 @@ export default Component.extend({
       body: formData,
     };
 
-    yield fetch(`${ENV.DS.host}/api/users/1/transactions/upload_transactions`, options).then((response) => {
+    yield fetch(`${ENV.DS.host}/api/users/${this.currentUser.user.id}/transactions/upload_transactions`, options).then((response) => {
       response
         .json()
         .then((results) => {
