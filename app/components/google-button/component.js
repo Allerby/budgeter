@@ -9,7 +9,7 @@ export default Component.extend({
   tagName: 'button',
 
   click() {
-    this.get('authenticateWithGoogle').perform();
+    this.authenticateWithGoogle.perform();
   },
 
   authenticateWithGoogle: task(function * () {
