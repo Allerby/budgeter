@@ -3,14 +3,12 @@ import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 export default Route.extend(ApplicationRouteMixin, {
-  firebaseSession: service(),
   currentUser: service(),
   session: service(),
 
   beforeModel() {
-    this._super(...arguments);
     if (this.session.isAuthenticated) {
-      this.currentUser.load();
+      return this.currentUser.load();
     }
   },
 
@@ -29,7 +27,7 @@ export default Route.extend(ApplicationRouteMixin, {
       this.session.set('previousTransition', null);
       previousTransition.retry();
     } else {
-      this.transitionTo('setup.upload');
+      this.transitionTo('welcome');
     }
   },
 });

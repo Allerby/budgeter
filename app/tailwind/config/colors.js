@@ -37,6 +37,7 @@ export default {
   'primary-4': '#1b1b2e',
 
   'primary-1-hover': '#443ce9',
+  'primary-2-hover': '#1f1257',
   'primary-disabled': '#b2b6cd',
 
   // Category colors

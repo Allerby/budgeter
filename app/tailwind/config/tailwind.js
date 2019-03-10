@@ -1,4 +1,5 @@
 import container from 'tailwindcss/plugins/container'
+import cssGrid from './css-grid';
 
 import colors from './colors';
 import screens from './screens';
@@ -123,7 +124,15 @@ export default {
     container({
       // center: true,
       // padding: '1rem',
-    })
+    }),
+    cssGrid({
+      grids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      gaps: {
+        '0': '0',
+        '4': '1rem',
+        '8': '2rem',
+      }
+    }),
   ],
 
   /*

@@ -19,17 +19,21 @@
       <div class='mt-2'>
         {{#form-for model as |f|}}
           <div class='flex justify-between'>
-            {{f.text-field 'first_name'}}
-            {{f.text-field 'last_name' fieldClasses='ml-4'}}
+            {{f.text-field 'first_name' autocomplete='given-name'}}
+            {{f.text-field 'last_name' fieldClasses='ml-4' autocomplete='family-name'}}
           </div>
 
           <div class='layout-row'>
             <div class='flex-100'>
-              {{f.email-field 'email' label='Email address'}}
+              {{f.email-field 'email' label='Email address' autocomplete='email'}}
             </div>
           </div>
 
-          {{f.password-field 'password' label='Create a password' hint='Password must be at least 8 characters long'}}
+          {{f.password-field 'password' 
+            label='Create a password' 
+            hint='Password must be at least 8 characters long'
+            autocomplete='new-password'
+          }}
 
           {{#if error}}
             {{error}}

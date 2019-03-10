@@ -19,17 +19,13 @@ module.exports = function(environment) {
         Date: false
       }
     },
-    firebase: {
-      apiKey: 'AIzaSyDVuTl-pMh0t4JntdLK2fDRq-VvzCjLeps',
-      authDomain: 'budgeter-1525e.firebaseapp.com',
-      databaseURL: 'https://budgeter-1525e.firebaseio.com',
-      storageBucket: '',
-    },
     torii: {
-      sessionServiceName: 'firebaseSession',
+      sessionServiceName: 'toriiSession',
       providers: {
-        'google': {
-          redirectUri: '/',
+        'google-oauth2': {
+          tokenExchangeUri: 'http://localhost:4200/api/authenticate_with_google',
+          apiKey: '531938259695-rn4u4b84glahtpimu7026eq7spd82m3g.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:3000/torii/redirect.html',
         }
       }
     },

@@ -18,8 +18,8 @@
 
       <div class='mt-6'>
         {{#form-for model submit=(perform signIn) as |f|}}
-          {{f.email-field 'email'}}
-          {{f.password-field 'password'}}
+          {{f.email-field 'email' autocomplete='email'}}
+          {{f.password-field 'password' autocomplete='current-password'}}
 
           {{#if errors}}
             {{#each errors as |error|}}

@@ -4,7 +4,6 @@ import { computed } from '@ember/object';
 import groupBy from 'budgeter/utils/group-by';
 
 export default Controller.extend({
-  firebaseSession: service(),
   currentUser: service(),
 
   uncategorisedTransactions: computed('model', function() {

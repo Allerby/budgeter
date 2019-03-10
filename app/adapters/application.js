@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import config from '../config/environment';
+import config from 'budgeter/config/environment';
 
 export default DS.JSONAPIAdapter.extend({
   session: service(),

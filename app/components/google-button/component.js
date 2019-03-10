@@ -9,18 +9,10 @@ export default Component.extend({
   tagName: 'button',
 
   click() {
-    if (this.type === 'login') {
-      this.get('signInWithGoogle').perform('google');
-    } else if (this.type === 'register') {
-      this.get('registerWithGoogle').perform('google');
-    }
+    this.get('authenticateWithGoogle').perform();
   },
 
-  signInWithGoogle: task(function * (provider) {
-    return yield this.session.authenticate('authenticator:torii', {'provider': provider});
-  }),
-
-  registerWithGoogle: task(function * (provider) {
-    return yield this.session.authenticate('authenticator:torii', {'provider': provider});
+  authenticateWithGoogle: task(function * () {
+    return yield this.session.authenticate('authenticator:torii', 'google-oauth2');
   }),
 });

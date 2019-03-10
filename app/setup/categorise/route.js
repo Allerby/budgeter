@@ -7,7 +7,7 @@ export default Route.extend({
   model() {
     // Needs to retrieve transactions where prospective category has a value and category has none
     return this.store.query('transaction', {
-      user_id: this.currentUser.user.id,
+      user_id: this.currentUser.user.id
     });
   },
 

@@ -5,4 +5,5 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   model() {
   },
+  
 });
