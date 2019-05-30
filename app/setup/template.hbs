@@ -37,13 +37,13 @@
 </div>
 
 {{#if selectCategory}}
-  {{category-picker 
-    selectCategory=selectCategory
-    changeCategory=(action 'changeCategory')
-    createNewTag=(action 'openTagCreate')
-  }}
+  <CategoryPicker 
+    @selectCategory={{selectCategory}}
+    @changeCategory={{action 'changeCategory'}}
+    @createNewTag={{action 'openTagCreate'}}
+  />
 {{/if}}
 
 {{#if createNewTag}}
-  {{create-new-tag}}
+  <CreateNewTag @changeCategory={{action 'changeCategory'}} />
 {{/if}}

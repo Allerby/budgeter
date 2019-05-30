@@ -7,14 +7,16 @@ import fetch from 'fetch';
 const decode = str => {
   if (typeof atob === 'function') {
     return atob(str);
-  } else if (typeof FastBoot === 'object') {
-    try {
-      const buffer = FastBoot.require('buffer');
-      return buffer.Buffer.from(str, 'base64').toString('utf-8');
-    } catch (err) {
-      throw new Error('buffer must be available for decoding base64 strings in FastBoot. Make sure to add buffer to your fastbootDependencies.');
-    }
-  } else {
+  }
+  // else if (typeof FastBoot === 'object') {
+  //   try {
+  //     const buffer = FastBoot.require('buffer');
+  //     return buffer.Buffer.from(str, 'base64').toString('utf-8');
+  //   } catch (err) {
+  //     throw new Error('buffer must be available for decoding base64 strings in FastBoot. Make sure to add buffer to your fastbootDependencies.');
+  //   }
+  // }
+  else {
     throw new Error('Neither atob nor the FastBoot global are avaialble. Unable to decode base64 strings.');
   }
 };

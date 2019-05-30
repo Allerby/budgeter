@@ -1,0 +1,6 @@
+<button class='flex flex-col pb-6 relative group focus:outline-none' {{action @onClick}}>
+  {{yield (hash
+    icon=(component 'icon-button/icon' categoryName=@category.name)
+    label=(component 'icon-button/label' categoryName=@category.name)
+  )}}
+</button>

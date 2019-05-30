@@ -4,12 +4,21 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
+  categories: service(),
   session: service(),
 
   beforeModel() {
     if (this.session.isAuthenticated) {
       return this.currentUser.load();
     }
+  },
+
+  model() {
+    return this.store.findAll('category');
+  },
+
+  afterModel(resolvedModel) {
+    this.categories.set('allCategories', resolvedModel);
   },
 
   sessionInvalidated() {

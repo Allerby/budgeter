@@ -21,6 +21,7 @@
 /testem.log
 functions
 *.DS_Store*
+/public/animations/lady_data.json
 
 # ember-try
 /.node_modules.ember-try/

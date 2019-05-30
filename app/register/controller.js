@@ -5,7 +5,7 @@ import { task } from 'ember-concurrency';
 export default Controller.extend({
   session: service(),
 
-  authenticate: task(function * () {
+  authenticate: task(function* () {
     return yield this.model.save().then(() => {
       this.transitionToRoute('welcome')
     }).catch(() => {

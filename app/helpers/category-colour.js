@@ -44,8 +44,9 @@ export function categoryColour(category) {
     ],
   };
   let categoryColour;
+  // This could instead check if the category was a child category, if so, it would find it's parent and return the name (tolowercase'd).
   Object.entries(categories).forEach(([key, value]) => {
-    if (value.includes(category.firstObject)) {
+    if (value.includes(category.firstObject.toLowerCase())) {
       categoryColour = key;
     }
   });

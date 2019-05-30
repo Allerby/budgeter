@@ -1,60 +1,33 @@
 {{set-body-class 'overflow-hidden'}}
 
-<div class='w-full h-full flex flex-col justify-center'>
-  <div class='relative text-center mx-auto flex flex-col h-full justify-center bg-white rounded px-6 py-8' style='max-height: 430px;'>
+<div class='leisure absolute pin-l pin-t w-full h-full flex flex-col justify-center'>
+  <div class='relative text-center mx-auto flex flex-col justify-center bg-white rounded px-6 py-8' id='new_component_container'>
+    <button class='group' {{action 'closeModal'}}>
+      <img 
+        src='/icons/ic-plus-copy.png'
+        srcset='/icons/ic-plus-copy@2x.png 2x,/icons/ic-plus-copy@3x.png 3x'
+        class='absolute pin-t pin-r m-4 transition group-hover:btn-secondary-hover'
+        alt='plus-icon'
+      >
+    </button>
+
     <h2 class='text-primary-2'>Create a new tag</h2>
     <p class='body text-primary-2 mt-4'>Which group does this tag belong to?</p>
 
     <div class='flex flex-row mt-6'>
-      <div class='flex flex-col pr-6 pb-6 relative'>
-        <img 
-          src='/icons/ic-rent.png'
-          srcset='/icons/ic-rent@2x.png 2x,/icons/ic-rent@3x.png 3x'
-          class='bg-white rounded-full p-3 mx-auto border border-shade-3 transition group-hover:icon-hover' 
-        />
-        <span class='body-2 flex self-center text-primary-3 absolute text-center mt-2 pin-b'>Housing</span>
-      </div>
-
-      <div class='flex flex-col pb-6 relative'>
-        <img 
-          src='/icons/ic-cinema.png'
-          srcset='/icons/ic-cinema@2x.png 2x,/icons/ic-cinema@3x.png 3x'
-          class='bg-white rounded-full p-3 mx-auto border border-shade-3 transition group-hover:icon-hover' 
-        />
-        <span class='body-2 flex self-center text-primary-3 absolute text-center mt-2 pin-b'>Leisure</span>
-      </div>
-
-      <div class='flex flex-col px-6 pb-6 relative'>
-        <img 
-          src='/icons/ic-coffee.png'
-          srcset='/icons/ic-coffee@2x.png 2x,/icons/ic-coffee@3x.png 3x'
-          class='bg-white rounded-full p-3 mx-auto border border-shade-3 transition group-hover:icon-hover' 
-        />
-        <span class='body-2 flex self-center text-primary-3 whitespace-no-wrap absolute text-center mt-2 pin-b'>Food & Drink</span>
-      </div>
-
-      <div class='flex flex-col pr-6 pb-6 relative'>
-        <img 
-          src='/icons/ic-clothes.png'
-          srcset='/icons/ic-clothes@2x.png 2x,/icons/ic-clothes@3x.png 3x'
-          class='bg-white rounded-full p-3 mx-auto border border-shade-3 transition group-hover:icon-hover' 
-        />
-        <span class='body-2 flex self-center text-primary-3 absolute text-center mt-2 pin-b'>Lifestyle</span>
-      </div>
-
-      <div class='flex flex-col pb-6 relative'>
-        <img 
-          src='/icons/ic-salary.png'
-          srcset='/icons/ic-salary@2x.png 2x,/icons/ic-salary@3x.png 3x'
-          class='bg-white rounded-full p-3 mx-auto border border-shade-3 transition group-hover:icon-hover' 
-        />
-        <span class='body-2 flex self-center text-primary-3 absolute text-center mt-2 pin-b'>Income</span>
-      </div>
+      {{#each categories.parentCategories as |category|}}
+        <IconButton @category={{category}} @onClick={{action 'selectCategory' category}} class={{join '-' (without '&' (w (lowercase category.name)))}} as |button|>
+          <button.icon @selected={{eq selectedCategory category}} />
+          <button.label />
+        </IconButton>
+      {{/each}}
     </div>
 
-    <label for='tag_name' class='font-thin text-sm block text-primary-2 mt-4 text-left mt-8'>Tag name</label>
-    {{input id='tag_name' class='border rounded-sm h-12 mt-1 text-primary-2 focus:border-primary-1 p-4 w-full'}}
-    <button class='btn-primary hover:btn-primary-hover w-56 mt-8 mx-auto'>
+    <label for='tag_name' class='font-thin text-sm block text-primary-2 mt-4 text-left mt-8'>
+      Tag name
+    </label>
+    {{input id='tag_name' value=tagName class='border rounded-sm h-12 mt-1 text-primary-2 focus:border-primary-1 p-4 w-full'}}
+    <button class='btn-primary hover:btn-primary-hover w-56 mt-8 mx-auto' onClick={{perform createNewCategory}}>
       Create tag
     </button>
   </div>

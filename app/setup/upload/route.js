@@ -8,12 +8,15 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   model() {
     return this.store.query('csv-upload', {
-      user_id: this.currentUser.user.id
+      filter: {
+        user_id: this.currentUser.user.id,
+      },
+      include: 'transactions'
     });
   },
 
   setupController(controller) {
     const uploads = this.store.peekAll('csv-upload');
     set(controller, 'allUploads', uploads);
-  }
+  },
 });

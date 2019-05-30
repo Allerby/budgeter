@@ -1,7 +1,7 @@
 @import 'tailwind';
 @import 'reset';
 @import 'typography';
-// @import "pod-styles";
+@import 'pod-styles.scss';
 @import 'power-select';
 
 .ember-power-select-option[aria-selected='true'] {
@@ -32,17 +32,9 @@
   padding: 8px;
 }
 
-#register_form {
-  width: 464px;
-  @media(max-width: 576px) {
-    width: 100%;
-  }
-}
-
 .blur {
   filter: blur(45px);
   -webkit-filter: blur(45px);
-  // background-color: #fff;
   background-color: rgba(237, 239, 255, 0.2);
   #navigation {
     position: fixed;

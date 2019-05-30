@@ -12,7 +12,7 @@ export default Component.extend({
     this.authenticateWithGoogle.perform();
   },
 
-  authenticateWithGoogle: task(function * () {
+  authenticateWithGoogle: task(function* () {
     return yield this.session.authenticate('authenticator:torii', 'google-oauth2');
   }),
 });

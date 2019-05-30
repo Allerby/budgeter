@@ -1,0 +1,51 @@
+& {
+  #component_container {
+    max-height: 700px;
+  }
+}
+
+.leisure {
+  top: 50px; 
+  left: 105px;
+  .category-list {
+    left: -130px;
+    top: -130px;
+  }
+}
+
+.income {
+  left: -120px;
+  .category-list {
+    left: -150px;
+    top: -80px;
+    width: 120px;
+  }
+}
+
+.housing {
+  bottom: 50px; 
+  left: -20px;
+  .category-list {
+    right: -130px;
+    top: 150px;
+    width: 350px;
+  }
+}
+
+.food-drink {
+  right: -120px;
+  .category-list {
+    left: 120px;
+    top: -40px;
+  }
+}
+
+.lifestyle {
+  bottom: 50px;
+  right: -20px;
+  .category-list {
+    left: -130px; 
+    top: 150px;
+    width: 350px;
+  }
+}

@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import groupBy from 'budgeter/utils/group-by';
+import _ from 'lodash';
 
 export default Controller.extend({
   currentUser: service(),
@@ -11,9 +12,10 @@ export default Controller.extend({
     return this.store.peekAll('transaction');
   }),
 
-  groupedTransactions: computed('uncategorisedTransactions', 'uncategorisedTransactions.@each.prospective_category', function() {
-    let transactions = groupBy(this.uncategorisedTransactions, transaction => transaction.prospective_category);
-    return transactions;
+  groupedTransactions: computed('uncategorisedTransactions', 'uncategorisedTransactions.@each.prospective_category_id', function() {
+    let transactions = groupBy(this.uncategorisedTransactions, transaction => transaction.prospective_category_id);
+    let arr = _.values(transactions);
+    return arr;
   }),
 
   actions: {

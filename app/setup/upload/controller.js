@@ -20,7 +20,7 @@ export default Controller.extend({
       set(this, 'selectedBank', bank);
     },
     categoriseSpending() {
-      this.transitionToRoute('setup.categorise');
+      this.transitionToRoute('setup.categorise', { queryParams: { currentTransactionGroup: 0 }});
     },
   },
 });

@@ -17,7 +17,7 @@ export default Component.extend({
     this.upload.perform(...arguments);
   },
 
-  upload: task(function * (event) {
+  upload: task(function* (event) {
     const csv = event.target.files[0];
 
     let formData = new FormData();

@@ -5,11 +5,13 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   store: service(),
 
-  deleteCsvUpload: task(function * () {
+  deleteCsvUpload: task(function* () {
     let transactions = yield this.csv.transactions;
     // For some reason I cannot unload the transactions after destroying the record..
     yield transactions.forEach((transaction) => {
-      this.store.unloadRecord(transaction);
+      if (transaction) {
+        this.store.unloadRecord(transaction);
+      }
     });
     return yield this.csv.destroyRecord();
   }),
