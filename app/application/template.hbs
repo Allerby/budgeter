@@ -2,7 +2,7 @@
   <AnimatedTools />
   {{outlet}}
 
-  {{#if (eq currentRouteName 'index')}}
+  {{#if (eq router.currentRouteName 'index')}}
     {{set-body-class 'bg-primary-4 overflow-hidden'}}
     <img alt='logo' class='w-12 absolute pin-t pin-l mx-auto mt-12 ml-12' src='/logo-only.png'>
     {{body-movin path='background_data' class='w-screen'}}

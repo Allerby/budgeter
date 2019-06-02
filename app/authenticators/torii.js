@@ -1,5 +1,5 @@
+import { inject as service } from "@ember/service";
 import ToriiAuthenticator from 'ember-simple-auth/authenticators/torii';
-import { inject as service } from '@ember/service';
 import RSVP, { reject } from 'rsvp';
 import config from 'budgeter/config/environment';
 import fetch from 'fetch';
@@ -21,12 +21,13 @@ const decode = str => {
   }
 };
 
-export default ToriiAuthenticator.extend({
-  torii: service(),
+export default class Torii extends ToriiAuthenticator {
+  @service()
+  torii;
 
   authenticate() {
     const tokenExchangeUri = config.torii.providers['google-oauth2'].tokenExchangeUri;
-    return this._super(...arguments).then((data) => {
+    return super.authenticate(...arguments).then((data) => {
       const options = { 
         method: 'POST',
         headers: {
@@ -45,7 +46,7 @@ export default ToriiAuthenticator.extend({
         };
       });
     });
-  },
+  }
 
   invalidate(data) {
     return new RSVP.Promise((resolve) => {
@@ -53,15 +54,15 @@ export default ToriiAuthenticator.extend({
     }, () => {
       return reject(data);
     });
-  },
-  
+  }
+
   restore(data) {
     return new RSVP.Promise((resolve) => {
       return resolve(data);
     }, () => {
       return reject(data);
     });
-  },
+  }
 
   /**
     Returns the decoded token with accessible returned values.
@@ -78,5 +79,5 @@ export default ToriiAuthenticator.extend({
     } catch (error) {
       return tokenData;
     }
-  },
-});
+  }
+}

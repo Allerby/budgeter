@@ -1,12 +1,13 @@
+import { computed } from "@ember/object";
 import Service from '@ember/service';
-import { computed } from '@ember/object';
 
-export default Service.extend({
-  allCategories: [],
+export default class Categories extends Service {
+  allCategories = [];
 
-  parentCategories: computed('categories', function() {
+  @computed('categories')
+  get parentCategories() {
     return this.allCategories.filterBy('parent_category_id', null);
-  }),
+  }
 
   iconMap(categoryName) {
     switch(categoryName) {
@@ -77,5 +78,5 @@ export default Service.extend({
       default:
         return 'ic-error';
     };
-  },
-});
+  }
+}

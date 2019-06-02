@@ -1,6 +1,7 @@
+import { classNames } from "@ember-decorators/component";
+import { action, computed } from "@ember/object";
+import { inject as service } from "@ember/service";
 import Component from '@ember/component';
-import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 import { wait } from 'ember-animated';
 import move from 'ember-animated/motions/move';
 import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
@@ -15,15 +16,20 @@ import { adjustCSS } from 'ember-animated/motions/adjust-css';
  *  @param changeCategory
  */
 
-export default Component.extend({
-  router: service(),
-  store: service(),
-  categories: service(),
+@classNames('transaction-carousel-slide')
+export default class TransactionSlide extends Component {
+  @service()
+  router;
 
-  classNames: 'transaction-carousel-slide',
-  transactions: null,
+  @service()
+  store;
 
-  transition: function * ({ insertedSprites, removedSprites }) {
+  @service()
+  categories;
+
+  transactions = null;
+
+  *transition({ insertedSprites, removedSprites }) {
     for (let sprite of insertedSprites) {
       console.log('insertedSprite:', sprite);
       fadeIn(sprite);
@@ -39,25 +45,30 @@ export default Component.extend({
       sprite.endAtPixel({ y: sprite.initialBounds.height });
       move(sprite, { easing: easeOut });
     }
-  },
+  }
 
-  isCurrentSlide: computed('slideIndex', 'currentTransactionGroup', function() {
+  @computed('slideIndex', 'currentTransactionGroup')
+  get isCurrentSlide() {
     return String(this.slideIndex) == this.currentTransactionGroup;
-  }),
+  }
 
-  currentCategory: computed('transactions.@each.prospective_category_id', 'currentGroupId', function() {
+  @computed('transactions.@each.prospective_category_id', 'currentGroupId')
+  get currentCategory() {
     return this.store.peekRecord('category', this.transactions[0].prospective_category_id);
-  }),
+  }
 
-  currentGroupLength: computed('currentTransactions', function() {
+  @computed('currentTransactions')
+  get currentGroupLength() {
     return this.transactions.length;
-  }),
+  }
 
-  currentGroupDetails: computed('currentTransactions', function() {
+  @computed('currentTransactions')
+  get currentGroupDetails() {
     return this.transactions[0].details;
-  }),
+  }
 
-  icon: computed('transactions', 'currentTransactionGroup', function() {
+  @computed('transactions', 'currentTransactionGroup')
+  get icon() {
     if (this.currentCategory) {
       if (this.currentCategory.user_id === null) {
         return this.categories.iconMap(this.currentCategory.name);
@@ -67,20 +78,21 @@ export default Component.extend({
         });
       }
     };
-  }),
+  }
 
-  actions: {
-    tag() {
-      let transactions = this.currentTransactions.map((transaction) => { 
-        transaction.set('category', this.currentCategory);
-        transaction.save();
-      });
-      Promise.all(transactions).then(() => {
-        this.incrementProperty('currentTransactionGroup');
-      });
-    },
-    chooseAnotherCategory() {
-      this.router.transitionTo({ queryParams: { selectCategory: true }});
-    },
-  },
-});
+  @action
+  tag() {
+    let transactions = this.currentTransactions.map((transaction) => { 
+      transaction.set('category', this.currentCategory);
+      transaction.save();
+    });
+    Promise.all(transactions).then(() => {
+      this.incrementProperty('currentTransactionGroup');
+    });
+  }
+
+  @action
+  chooseAnotherCategory() {
+    this.router.transitionTo({ queryParams: { selectCategory: true }});
+  }
+}

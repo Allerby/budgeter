@@ -1,10 +1,11 @@
+import { inject as service } from "@ember/service";
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import { hash } from 'rsvp';
 
-export default Route.extend(AuthenticatedRouteMixin, {
-  currentUser: service(),
+export default class SetupRoute extends Route.extend(AuthenticatedRouteMixin) {
+  @service()
+  currentUser;
 
   model() {
     // Needs to retrieve transactions where prospective category has a value and category has none
@@ -15,5 +16,5 @@ export default Route.extend(AuthenticatedRouteMixin, {
     });
 
     return hash({ transactions });
-  },
-});
+  }
+}

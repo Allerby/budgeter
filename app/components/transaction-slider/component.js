@@ -1,3 +1,4 @@
+import { classNames } from "@ember-decorators/component";
 import Component from '@ember/component';
 
 /**
@@ -7,7 +8,7 @@ import Component from '@ember/component';
  *  @param selectCategory
  */
 
-export default Component.extend({
-  classNames: 'transaction-carousel',
-  transactions: null,
-});
+@classNames('transaction-carousel')
+export default class TransactionSlider extends Component {
+ transactions = null;
+}

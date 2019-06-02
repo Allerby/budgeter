@@ -1,39 +1,39 @@
-import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
-import { computed, set } from '@ember/object';
+import { action, computed } from "@ember/object";
+import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
+import { set } from '@ember/object';
 import groupBy from 'budgeter/utils/group-by';
+import { queryParam } from 'ember-parachute/decorators';
 
-export default Controller.extend({
-  currentUser: service(),
-  session: service(),
+export default class SetupController extends Controller {
+  @service()
+  currentUser;
 
-  queryParams: {
-    currentTransactionGroup: {
-      refreshModel: true,
-    },
-    selectCategory: {
-      refreshModel: false,
-    },
-    createNewTag: {
-      refreshModel: false,
-    },
-  },
+  @service()
+  session;
 
-  currentTransactionId: 0,
-  currentTransactionGroup: null,
-  selectCategory: false,
-  createNewTag: false,
+  @queryParam() 
+  currentTransactionGroup = null;
 
-  allTransactions: computed('model', function() {
+  // @queryParam({ refresh: false }) 
+  selectCategory = false;
+  
+  // @queryParam({ refresh: false }) 
+  createNewTag = false;
+
+  @computed('model')
+  get allTransactions() {
     // Will need to filter by current user id
     return this.store.peekAll('transaction');
-  }),
+  }
 
-  groupedTransactions: computed('allTransactions', 'allTransactions.@each.prospective_category_id', function() {
+  @computed('allTransactions', 'allTransactions.@each.prospective_category_id')
+  get groupedTransactions() {
     return groupBy(this.allTransactions, transaction => transaction.prospective_category_id);
-  }),
+  }
 
-  progressPercentage: computed('currentTransactionGroup', 'groupedTransactions', function() {
+  @computed('currentTransactionGroup', 'groupedTransactions')
+  get progressPercentage() {
     let length = Object.keys(this.groupedTransactions).length;
     let percentage = Math.round((this.currentTransactionGroup / length) * 100)
     
@@ -41,31 +41,35 @@ export default Controller.extend({
       return `<i class='icon check'></i>`.htmlSafe();
     }
     return `${percentage}%`;
-  }),
+  }
 
-  currentTransactions: computed('model', 'currentTransactionGroup', function() {
+  @computed('model', 'currentTransactionGroup')
+  get currentTransactions() {
     return Object.values(this.groupedTransactions)[this.currentTransactionGroup]
-  }),
+  }
 
-  actions: {
-    logout(e) {
-      e.preventDefault();
-      this.session.invalidate();
-    },
-    changeCategory(category) {
-      // n+1 query which could be handled on the server.. could send up transaction ids and category.
-      let transactions = this.currentTransactions.map((transaction) => { 
-        transaction.set('prospective_category_id', category.id);
-        transaction.save();
-      });
-      
-      Promise.all(transactions).then(() => {
-        set(this, 'selectCategory', false);
-      });
-    },
-    openTagCreate() {
+  @action
+  logout(e) {
+    e.preventDefault();
+    this.session.invalidate();
+  }
+
+  @action
+  changeCategory(category) {
+    // n+1 query which could be handled on the server.. could send up transaction ids and category.
+    let transactions = this.currentTransactions.map((transaction) => { 
+      transaction.set('prospective_category_id', category.id);
+      transaction.save();
+    });
+    
+    Promise.all(transactions).then(() => {
       set(this, 'selectCategory', false);
-      set(this, 'createNewTag', true);
-    }
-  },
-});
+    });
+  }
+
+  @action
+  openTagCreate() {
+    set(this, 'selectCategory', false);
+    set(this, 'createNewTag', true);
+  }
+}

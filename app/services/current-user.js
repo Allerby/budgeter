@@ -1,11 +1,12 @@
-import Service, { inject as service } from '@ember/service';
+import Service, { inject as service } from "@ember/service";
 
-export default Service.extend({
-  store: service(),
+export default class CurrentUser extends Service {
+  @service()
+  store;
 
   load() {
     return this.store.queryRecord('user', { me: true }).then((user) => {
       this.set('user', user);
     });
   }
-});
+}

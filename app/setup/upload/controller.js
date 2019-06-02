@@ -1,26 +1,31 @@
-import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
+import { action } from "@ember/object";
+import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
+import { alias } from "@ember/object/computed";
 import { A } from '@ember/array';
 import { set } from '@ember/object';
-import { alias } from '@ember/object/computed';
 
-export default Controller.extend({
-  currentUser: service(),
-  selectedBank: undefined,
+export default class UploadController extends Controller {
+  @service()
+  currentUser;
+
+  selectedBank = undefined;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     set(this, 'banks', A(['ANZ', 'BNZ', 'Kiwi Bank', 'ASB', 'Westpac', 'Co-operative Bank']));
-  },
+  }
 
-  uploads: alias('allUploads.[]'),
+  @alias('allUploads.[]')
+  uploads;
 
-  actions: {
-    selectBank(bank) {
-      set(this, 'selectedBank', bank);
-    },
-    categoriseSpending() {
-      this.transitionToRoute('setup.categorise', { queryParams: { currentTransactionGroup: 0 }});
-    },
-  },
-});
+  @action
+  selectBank(bank) {
+    set(this, 'selectedBank', bank);
+  }
+
+  @action
+  categoriseSpending() {
+    this.transitionToRoute('setup.categorise', { queryParams: { currentTransactionGroup: 0 }});
+  }
+}

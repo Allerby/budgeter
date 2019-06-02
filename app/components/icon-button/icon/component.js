@@ -1,12 +1,15 @@
+import { tagName } from "@ember-decorators/component";
+import { computed } from "@ember/object";
+import { inject as service } from "@ember/service";
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object'; 
 
-export default Component.extend({
-  categories: service(),
-  tagName: '',
+@tagName('')
+export default class Icon extends Component {
+  @service()
+  categories;
 
-  icon: computed('name', function() {
+  @computed('name')
+  get icon() {
     return this.categories.iconMap(this.categoryName);
-  }),
-});
+  }
+}

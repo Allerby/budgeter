@@ -4674,6 +4674,13 @@ ember-named-arguments-polyfill@^1.0.0:
     ember-invoke-action "^1.5.0"
     ember-runtime-enumerable-includes-polyfill "^2.0.0"
 
+ember-parachute@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ember-parachute/-/ember-parachute-1.0.2.tgz#f147f6b29df100d467acc1ddf13761aef92e95de"
+  integrity sha512-wpTn179au/BE2+p4z9mQRh2Cy/a5J038oPpY2Buja3gDO/Qh64ny3klr4dxMRQ5GePniglkWK/LW3qitcs902A==
+  dependencies:
+    ember-cli-babel "^7.1.2"
+
 ember-power-select@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-2.3.2.tgz#8bd20989c52ec53e5f526bd5d3267aac6f0a76f4"
