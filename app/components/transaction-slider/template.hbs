@@ -1,11 +1,13 @@
-<AnimatedContainer>
+<AnimatedContainer style='min-width: 584px;'>
 
-  <div class='flex flex-row'>
-    {{#animated-each transactions use=this.transition as |transactionGroup|}}
-      <TransactionSlider::Slide 
+  <div class='flex'>
+    {{#each transactions as |transactionGroup index|}}
+      <TransactionSlider::Slide
+        @slideIndex={{index}}
+        @currentTransactionGroup={{currentTransactionGroup}}
         @transactions={{transactionGroup}}
         @selectCategory={{selectCategory}} />
-    {{/animated-each}}
+    {{/each}}
   </div>
 
 </AnimatedContainer>

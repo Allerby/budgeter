@@ -7,7 +7,7 @@
       </h2>
       
       <div class='flex justify-center mt-6'>
-        {{!-- {{google-button type='login'}} --}}
+        {{google-button type='login'}}
       </div>
 
       <div class='flex mt-6'>
@@ -17,7 +17,7 @@
       </div>
 
       <div class='mt-6'>
-        {{#form-for model submit=(action (perform 'signIn')) as |f|}}
+        {{#form-for model submit=(perform signIn) as |f|}}
           {{f.email-field 'email' autocomplete='email'}}
           {{f.password-field 'password' autocomplete='current-password'}}
 
@@ -32,9 +32,9 @@
           </div>
 
           <div class='flex justify-center'>
-            {{!-- {{#link-to 'register' class='btn-secondary transition hover:btn-secondary-hover w-3/5 z-10 text-center no-underline appearance-none'}}
+            {{#link-to 'register' class='btn-secondary transition hover:btn-secondary-hover w-3/5 z-10 text-center no-underline appearance-none'}}
               Forgot your password?
-            {{/link-to}} --}}
+            {{/link-to}}
           </div>
         {{/form-for}}
       </div>

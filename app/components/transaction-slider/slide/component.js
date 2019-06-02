@@ -1,11 +1,11 @@
 import Component from '@ember/component';
-import { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { set } from '@ember/object';
 import { wait } from 'ember-animated';
 import move from 'ember-animated/motions/move';
 import { fadeIn, fadeOut } from 'ember-animated/motions/opacity';
-import { parallel } from 'ember-animated';
+import { easeOut, easeIn } from 'ember-animated/easings/cosine';
+import { adjustCSS } from 'ember-animated/motions/adjust-css';
 
 /**
  *  Component parameters
@@ -22,66 +22,65 @@ export default Component.extend({
 
   classNames: 'transaction-carousel-slide',
   transactions: null,
-  
-  transition: function * ({ insertedSprites, removedSprites }) {
-    insertedSprites.forEach(sprite => {
-      wait(200);
-      fadeIn(sprite);
-      console.log('inserted', sprite);
-    });
 
-    removedSprites.forEach(sprite => {
+  transition: function * ({ insertedSprites, removedSprites }) {
+    for (let sprite of insertedSprites) {
+      console.log('insertedSprite:', sprite);
+      fadeIn(sprite);
+      sprite.applyStyles({ 'left': 0 });
+      sprite.startAtPixel({ y: sprite.finalBounds.top + 20 });
+      move(sprite, { easing: easeIn });
+    }
+    
+    for (let sprite of removedSprites) {
+      console.log('removedSprite:', sprite);
       fadeOut(sprite);
-      console.log('removed', sprite);
-    });
+      sprite.applyStyles({ 'left': 0 });
+      sprite.endAtPixel({ y: sprite.initialBounds.height });
+      move(sprite, { easing: easeOut });
+    }
   },
 
+  isCurrentSlide: computed('slideIndex', 'currentTransactionGroup', function() {
+    return String(this.slideIndex) == this.currentTransactionGroup;
+  }),
+
   currentCategory: computed('transactions.@each.prospective_category_id', 'currentGroupId', function() {
-    // console.log('currentGroupId', this.currentGroupId);
     return this.store.peekRecord('category', this.transactions[0].prospective_category_id);
   }),
 
-  currentGroupId: computed('transactions', 'currentTransactionGroup', function() {
-    // set(this, 'isShowing', true);
-    // return Object.keys(this.transactions)[this.currentTransactionGroup];
-  }),
-
-  currentTransactions: computed('transactions', 'currentTransactionGroup', function() {
-    // return Object.values(this.transactions)[this.currentTransactionGroup]
-  }),
-
   currentGroupLength: computed('currentTransactions', function() {
-    // return this.currentTransactions.length;
+    return this.transactions.length;
   }),
 
   currentGroupDetails: computed('currentTransactions', function() {
-    // return this.currentTransactions[0].details;
+    return this.transactions[0].details;
   }),
 
   icon: computed('transactions', 'currentTransactionGroup', function() {
-    // if (this.currentCategory) {
-    //   if (this.currentCategory.user_id === null) {
-    //     return this.categories.iconMap(this.currentCategory.name);
-    //   } else {
-    //     currentCategory.get('parent_category').then((parent_category) => {
-    //       return this.categories.iconMap(parent_category.name);
-    //     });
-    //   }
-    // };
+    if (this.currentCategory) {
+      if (this.currentCategory.user_id === null) {
+        return this.categories.iconMap(this.currentCategory.name);
+      } else {
+        currentCategory.get('parent_category').then((parent_category) => {
+          return this.categories.iconMap(parent_category.name);
+        });
+      }
+    };
   }),
 
   actions: {
     tag() {
-      // let transactions = this.currentTransactions.map((transaction) => { 
-      //   transaction.set('category', this.currentCategory);
-      //   transaction.save();
-      // });
-      // Promise.all(transactions).then(() => {
-      //   this.incrementProperty('currentTransactionGroup');
-      // });
+      let transactions = this.currentTransactions.map((transaction) => { 
+        transaction.set('category', this.currentCategory);
+        transaction.save();
+      });
+      Promise.all(transactions).then(() => {
+        this.incrementProperty('currentTransactionGroup');
+      });
     },
     chooseAnotherCategory() {
-      // this.router.transitionTo({ queryParams: { selectCategory: true }});
+      this.router.transitionTo({ queryParams: { selectCategory: true }});
     },
   },
 });
