@@ -61,7 +61,8 @@
     "torii": "^0.10.1"
   },
   "engines": {
-    "node": "8.* || >= 10.*"
+    "node": "8.* || >= 10.*",
+    "yarn": "1.13.0"
   },
   "dependencies": {
     "ember-component-css": ">= 0.6.4",
