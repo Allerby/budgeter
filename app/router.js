@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('upload');
     this.route('categorise');
   });
+  this.route('playground');
 });
 
 export default Router;

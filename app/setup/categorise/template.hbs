@@ -2,12 +2,12 @@
   <h1 class='text-center text-primary-2 mt-10'>Categorise your spending</h1>
   <p class='text-center body-1 text-primary-2 mt-4'>Tag your transactions with a category</p>
 
-  <TransactionSlider 
-    @transactions={{groupedTransactions}}
-    @currentTransactionGroup={{currentTransactionGroup}}
-    @selectCategory={{selectCategory}}
-    @changeCategory={{changeCategory}}
-  />
+  {{#if (not groupedTransactions.isRunning)}}
+    <TransactionSlider 
+      @transactions={{groupedTransactions.value}}
+      @currentTransactionGroup={{currentTransactionGroup}}
+    />
+  {{/if}}
 
   <div class='flex flex-1 mb-14'>
     <div class='flex w-full flex-col-reverse'>

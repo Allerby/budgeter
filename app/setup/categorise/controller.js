@@ -2,26 +2,23 @@ import { action, computed } from "@ember/object";
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import groupBy from 'budgeter/utils/group-by';
-import _ from 'lodash';
+import { values, reject } from 'lodash';
+import { task } from 'ember-concurrency-decorators'
 
 export default class CategoriseController extends Controller {
   @service()
   currentUser;
 
-  @computed('model')
-  get uncategorisedTransactions() {
-    // Will need to filter by current user id
-    return this.store.peekAll('transaction');
+  @task
+  uncategorisedTransactions = function*() {
+    let allTransactions = yield this.store.peekAll('transaction');
+    let groupedTransactions = groupBy(allTransactions, transaction => transaction.prospective_category_id);
+    return values(reject(groupedTransactions, transaction => transaction.category_id));
   }
 
-  @computed(
-    'uncategorisedTransactions',
-    'uncategorisedTransactions.@each.prospective_category_id'
-  )
+  @computed('model')
   get groupedTransactions() {
-    let transactions = groupBy(this.uncategorisedTransactions, transaction => transaction.prospective_category_id);
-    let arr = _.values(transactions);
-    return arr;
+    return this.uncategorisedTransactions.perform();
   }
 
   @action

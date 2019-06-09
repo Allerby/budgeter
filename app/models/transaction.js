@@ -10,6 +10,7 @@ export default DS.Model.extend({
   transaction_type: DS.attr('string'),
   prospective_category_id: DS.attr('string'),
   category_id: DS.attr('string'),
+  csv_upload_id: DS.attr('string'),
   
   prospective_category: DS.belongsTo('prospective_category'),
   category: DS.belongsTo('category'),

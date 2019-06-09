@@ -3,7 +3,6 @@ import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import { set } from '@ember/object';
 import groupBy from 'budgeter/utils/group-by';
-import { queryParam } from 'ember-parachute/decorators';
 
 export default class SetupController extends Controller {
   @service()
@@ -12,13 +11,10 @@ export default class SetupController extends Controller {
   @service()
   session;
 
-  @queryParam() 
-  currentTransactionGroup = null;
+  queryParams = ['currentTransactionGroup', 'selectCategory', 'createNewTag']
 
-  // @queryParam({ refresh: false }) 
+  currentTransactionGroup = 0;
   selectCategory = false;
-  
-  // @queryParam({ refresh: false }) 
   createNewTag = false;
 
   @computed('model')

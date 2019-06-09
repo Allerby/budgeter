@@ -1,12 +1,13 @@
 import DS from 'ember-data';
+const { attr, hasMany } = DS;
 
-export default DS.Model.extend({
-  first_name: DS.attr('string'),
-  last_name: DS.attr('string'),
-  password: DS.attr('string'),
-  email: DS.attr('string'),
-  social_photo_url: DS.attr('string'),
+export default class UserModel extends DS.Model {
+  @attr() first_name
+  @attr() last_name
+  @attr() password
+  @attr() email
+  @attr() social_photo_url
 
-  transactions: DS.hasMany('transaction'),
-  csv_uploads: DS.hasMany('csv_upload'),
-});
+  @hasMany() transactions
+  @hasMany() csv_uploads
+};

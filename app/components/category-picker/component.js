@@ -8,6 +8,9 @@ export default class CategoryPicker extends Component {
   @service()
   categories;
 
+  @service()
+  router;
+
   @action
   selectCategory(category) {
     if (category == this.selectedCategory) {
@@ -19,6 +22,6 @@ export default class CategoryPicker extends Component {
 
   @action
   closeCategories() {
-    this.toggleProperty('selectCategory');
+    this.router.transitionTo({ queryParams: { selectCategory: false }});
   }
 }
