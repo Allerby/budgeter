@@ -1,17 +1,38 @@
 <div class='flex flex-col'>
-  <h1 class='text-center text-primary-2 mt-10'>Categorise your spending</h1>
-  <p class='text-center body-1 text-primary-2 mt-4'>Tag your transactions with a category</p>
+  {{#if uncategorisedTransactions}}
+    <h1 class='text-center text-primary-2 mt-10'>
+      Categorise your spending
+    </h1>
+    <p class='text-center body-1 text-primary-2 mt-4'>
+      Tag your transactions with a category
+    </p>
+  {{else}}
+    <h1 class='text-center text-primary-2 mt-10'>
+      You categorised all of your transactions!
+    </h1>
+    <p class='text-center body-1 text-primary-2 mt-4'>
+      Ready to see how you’ve been spending your money in the last 12 months?
+    </p>
+  {{/if}}
 
-  {{log 'uncategorisedTransactions' uncategorisedTransactions.length}}
-  <TransactionSlider 
-    @transactionGroups={{groupedTransactions}}
-    @currentTransactionGroup={{currentTransactionGroup}}
-  />
+  {{#if uncategorisedTransactions}}
+    <TransactionSlider @transactionGroups={{groupedTransactions}}
+      @currentTransactionGroup={{currentTransactionGroup}} />
+  {{else}}
+    <img class="mt-16 sm:w-4/5 md:w-1/2 mx-auto" src="/illustrations/group-5@3x.png">
+  {{/if}}
 
   <div class='flex flex-1 mb-14'>
     <div class='flex w-full flex-col-reverse'>
       <div class='mx-auto'>
-        <button class='btn-secondary hover:btn-secondary-hover w-56' {{action 'skipTransaction'}}>Skip transaction</button>
+        {{#if uncategorisedTransactions}}
+          <button class='btn-secondary hover:btn-secondary-hover w-56' {{action 'skipTransaction'}}>Skip
+            transaction</button>
+        {{else}}
+          <button class='btn-primary hover:btn-primary-hover w-56'>
+            Show me the money
+          </button>
+        {{/if}}
       </div>
     </div>
   </div>

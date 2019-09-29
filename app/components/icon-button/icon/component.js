@@ -1,7 +1,7 @@
 import { tagName } from "@ember-decorators/component";
 import { computed } from "@ember/object";
 import Component from '@ember/component';
-import { iconMap } from 'budgeter/helpers/iconMap';
+import { iconMap } from 'budgeter/helpers/icon-map';
 
 @tagName('')
 export default class Icon extends Component {

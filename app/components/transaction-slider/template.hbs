@@ -1,12 +1,8 @@
 <AnimatedContainer style='width: 584px;'>
   <div class='flex'>
-    {{#if transactionGroups}}
     {{#animated-each transactionGroups use=this.transition as |transactionGroup index|}}
-    <TransactionSlider::Slide @slideIndex={{index}} @currentTransactionGroup={{currentTransactionGroup}}
-      @transactions={{transactionGroup}} />
+      <TransactionSlider::Slide @slideIndex={{index}} @currentTransactionGroup={{currentTransactionGroup}}
+        @transactions={{transactionGroup}} />
     {{/animated-each}}
-    {{else}}
-    <img class="mt-16" src="/illustrations/group-5@3x.png">
-    {{/if}}
   </div>
 </AnimatedContainer>
