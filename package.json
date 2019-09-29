@@ -63,7 +63,7 @@
     "torii": "^0.10.1"
   },
   "engines": {
-    "node": ">= 10.*",
+    "node": "8.11.2",
     "yarn": "^1.17.3"
   },
   "dependencies": {
