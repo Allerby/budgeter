@@ -2,28 +2,32 @@ import { action, computed } from "@ember/object";
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import groupBy from 'budgeter/utils/group-by';
-import { values, reject } from 'lodash';
-import { task } from 'ember-concurrency-decorators'
+import { map, filter } from 'lodash';
 
 export default class CategoriseController extends Controller {
   @service()
   currentUser;
 
-  @task
-  uncategorisedTransactions = function*() {
-    let allTransactions = yield this.store.peekAll('transaction');
-    let groupedTransactions = groupBy(allTransactions, transaction => transaction.prospective_category_id);
-    return values(reject(groupedTransactions, transaction => transaction.category_id));
+  @computed('model')
+  get allTransactions() {
+    return this.store.peekAll('transaction');
   }
 
-  @computed('model')
+  @computed('allTransactions.@each.category_id')
+  get uncategorisedTransactions() {
+    return filter(this.allTransactions.toArray(), (transaction) => {
+      return transaction.category_id == null;
+    });
+  }
+
+  @computed('uncategorisedTransactions.[]')
   get groupedTransactions() {
-    return this.uncategorisedTransactions.perform();
+    return map(groupBy(this.uncategorisedTransactions, (transaction) => transaction.prospective_category_id));
   }
 
   @action
   skipTransaction() {
     let transactionGroupNo = this.incrementProperty('currentTransactionGroup');
-    this.transitionToRoute({ queryParams: { currentTransactionGroup: transactionGroupNo }});
+    this.transitionToRoute({ queryParams: { currentTransactionGroup: transactionGroupNo } });
   }
 }

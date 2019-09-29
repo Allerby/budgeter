@@ -48,3 +48,17 @@
 }
 
 #space_lady { height: 90%; top: 5%; }
+
+.animated-tools {
+  font-size: 12px;
+  font-family: "Overpass", sans-serif;
+  .animated-tools-panel {
+    background-color: #fff;
+    border-color: #e1e1e6;
+  }
+  .animated-tools-launcher {
+    background-color: #fff;
+    border-color: #e1e1e6;
+    padding: 4px;
+  }
+}

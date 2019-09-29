@@ -33,11 +33,11 @@
   </div>
 
   <div class='grid grid-columns-2 grid-gap-4 mt-14'>
-    {{#each uploads as |upload|}}
+    {{#animated-each uploads use=this.transition as |upload|}}
       {{file-upload/list-item
         csv=upload
       }}
-    {{/each}}
+    {{/animated-each}}
   </div>
 
   <div class='flex flex-1 mb-14'>
