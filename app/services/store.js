@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import fetch from 'fetch';
 import ENV from 'budgeter/config/environment';
 import { inject as service } from '@ember/service';
-import { task, timeout, all } from 'ember-concurrency';
+import { task, all } from 'ember-concurrency';
 
 export default DS.Store.extend({
   store: service(),
@@ -37,7 +37,6 @@ export default DS.Store.extend({
             this.store.pushPayload(results);
           });
       }),
-      // timeout(750),
     ]);
   }),
 });

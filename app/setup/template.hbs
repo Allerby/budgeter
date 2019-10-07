@@ -11,7 +11,8 @@
       </div>
 
       <div class='flex justify-between h-6 mt-6 text-white leading-normal'>
-        {{#if (gt currentUser.user.csv_uploads.length 0)}}
+        {{log hasCsvUploads}}
+        {{#if hasCsvUploads}}
           <p class='text-correct'>Upload CSV</p>
           <i class='icon check'></i>
         {{else}}
@@ -20,13 +21,26 @@
         {{/if}}
       </div>
 
-      <div class='flex justify-between h-6 mt-6 text-white leading-normal'>
-        <p class='opacity-25'>Categorise</p>
-        <p class='opacity-25'>{{progressPercentage}}</p>
+      <div class='flex justify-between h-6 mt-6 
+        text-white leading-normal overflow-y-hidden 
+        {{if (eq router.currentRouteName 'setup.upload') 'opacity-25'}}
+        {{if (eq progressPercentage 100) 'text-correct'}}'>
+        <p>Categorise</p>
+        <AnimatedContainer>
+          {{#animated-value progressPercentage use=this.transition as |progress|}}
+            {{#if (eq progress 100)}}
+              <i class='icon check'></i>
+            {{else}}
+              <p>{{progress}}%</p>
+            {{/if}}
+          {{/animated-value}}
+        </AnimatedContainer>
       </div>
 
       <div class='flex justify-between h-6 mt-6 text-white leading-normal'>
-        <a onclick={{action 'logout'}}>Logout</a>
+        <a onclick={{action 'logout'}}>
+          Logout
+        </a>
       </div>
     </div>
   </div>
@@ -37,10 +51,7 @@
 </div>
 
 {{#if selectCategory}}
-  <CategoryPicker 
-    @changeCategory={{action 'changeCategory'}}
-    @createNewTag={{action 'openTagCreate'}}
-  />
+  <CategoryPicker @changeCategory={{action 'changeCategory'}} @createNewTag={{action 'openTagCreate'}} />
 {{/if}}
 
 {{#if createNewTag}}
