@@ -11,7 +11,7 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "yarn install; ember build",
+    "build": "ember build",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
@@ -25,7 +25,6 @@
     "ember-animated-tools": "^0.4.1",
     "ember-auto-import": "^1.5.2",
     "ember-cli": "~3.8.1",
-    "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^7.7.3",
     "ember-cli-bodymovin": "^0.1.5",
     "ember-cli-dependency-checker": "^3.1.0",
