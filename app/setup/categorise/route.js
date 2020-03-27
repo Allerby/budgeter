@@ -37,7 +37,6 @@ export default class CategoriseRoute extends Route {
     if (changed.currentTransactionGroup) {
       set(controller, 'currentTransactionGroup', changed.currentTransactionGroup);
     }
-    //TODO: We currently have a bug where the category won't reset...
     set(controller, 'changeToCategory', changed.changeToCategory);
   }
 }

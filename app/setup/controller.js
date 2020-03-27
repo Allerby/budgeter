@@ -104,17 +104,8 @@ export default class SetupController extends Controller {
 
   @action
   changeCategory(category) {
-    // n+1 query which could be handled on the server.. could send up transaction ids and category.
-    // let transactions = this.currentTransactions.map((transaction) => {
-    //   transaction.set('prospective_category_id', category.id);
-    //   transaction.save();
-    // });
     set(this, 'changeToCategory', category.id);
     set(this, 'selectCategory', false);
-
-    // Promise.all(transactions).then(() => {
-    //   set(this, 'selectCategory', false);
-    // });
   }
 
   @action

@@ -66,14 +66,13 @@ export default class TransactionSlide extends Component {
   tag = function* () {
     let transaction_ids = map(this.transactions, 'id');
     yield this.store.updateCategory.perform(transaction_ids, this.currentCategory);
-    //TODO: We currently have a bug where the category won't reset...
     this.router.transitionTo({ queryParams: { changeToCategory: null } });
   }
 
   @action
   showTransactionsForGroup() {
     const groupProspectiveCategoryId = this.transactions[0].prospective_category_id;
-    this.router.transitionTo({ queryParams: { viewTransactions: groupProspectiveCategoryId } })
+    this.router.transitionTo({ queryParams: { viewTransactions: groupProspectiveCategoryId } });
   }
 
   @action
