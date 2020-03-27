@@ -1,0 +1,17 @@
+<Checkbox
+  @checked={{@selected}}
+  @onClick={{@onClick}}
+  class="flex flex-col mt-auto"
+/>
+<div class="text-left ml-2">
+  <div class="text-primary-2 text-sm mb-1">
+    19 Jul 2018
+  </div>
+  <span class="text-primary-3">
+    {{@transaction.details}}
+  </span>
+</div>
+<span class="text-right text-error text-sm ml-auto mt-auto">
+  $
+  {{@transaction.amount}}
+</span>

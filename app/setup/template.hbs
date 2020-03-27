@@ -1,4 +1,4 @@
-<div class='flex h-screen flex-row {{if (or selectCategory createNewTag) 'blur'}}'>
+<div class='flex h-screen flex-row {{if (or selectCategory createNewTag viewTransactions) 'blur'}}'>
   <div id='navigation' class='bg-primary-4 flex-none' style='width: 216px'>
     <img class='w-24 block mx-auto mt-8' src='/logo@2x.png' />
 
@@ -37,7 +37,7 @@
         </AnimatedContainer>
       </div>
 
-      <div class='flex justify-between h-6 mt-6 text-white leading-normal'>
+      <div class='flex justify-between h-6 mt-6 text-white leading-normal cursor-pointer'>
         <a onclick={{action 'logout'}}>
           Logout
         </a>
@@ -56,4 +56,8 @@
 
 {{#if createNewTag}}
   <CreateNewTag @changeCategory={{action 'changeCategory'}} />
+{{/if}}
+
+{{#if viewTransactions}}
+  <ViewTransactions @transactions={{currentTransactions}} />
 {{/if}}

@@ -1,0 +1,32 @@
+{{set-body-class "overflow-hidden"}}
+<div class="justify-center w-full h-full flex flex-col">
+  <div class="justify-center px-4 py-4 rounded bg-white" id="test1">
+    <div class="h-full" id="test">
+      <div id="transparent"></div>
+      <ul
+        class="list-reset relative text-center mx-auto pr-4"
+        id="transaction_list"
+      >
+        {{#each transactions as |transaction|}}
+          <TransactionItem
+            @transaction={{transaction}}
+            @selected={{contains transaction selectedTransactions}}
+            @onClick={{action selectTransaction transaction}}
+          />
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <button
+    class="btn-primary hover:btn-primary-hover w-56 mx-auto mt-12"
+    {{action deselectAll}}
+  >
+    Deselect All
+  </button>
+  <button
+    class="btn-secondary hover:btn-secondary-hover w-56 mx-auto"
+    {{action close}}
+  >
+    Close
+  </button>
+</div>

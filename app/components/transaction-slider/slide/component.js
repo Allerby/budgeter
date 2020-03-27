@@ -28,12 +28,14 @@ export default class TransactionSlide extends Component {
 
   @computed('currentTransactionGroup', 'slideIndex')
   get isCurrentSlide() {
-    return this.slideIndex == 0
+    return this.slideIndex == this.currentTransactionGroup
   }
 
-  @computed('transactions.@each.prospective_category_id')
+  @computed('changeToCategory', 'transactions.@each.prospective_category_id')
   get currentCategory() {
-    return this.store.peekRecord('category', this.transactions[0].prospective_category_id);
+    let categoryId = this.changeToCategory ? this.changeToCategory : this.transactions[0].prospective_category_id;
+    console.log('update', categoryId);
+    return this.store.peekRecord('category', categoryId);
   }
 
   @computed('transactions')
@@ -52,7 +54,8 @@ export default class TransactionSlide extends Component {
       if (this.currentCategory.user_id === null) {
         return iconMap(this.currentCategory.name);
       } else {
-        currentCategory.get('parent_category').then((parent_category) => {
+        this.currentCategory.get('parent_category').then((parent_category) => {
+          console.log('parentCategory', parent_category);
           return iconMap(parent_category.name);
         });
       }
@@ -63,6 +66,14 @@ export default class TransactionSlide extends Component {
   tag = function* () {
     let transaction_ids = map(this.transactions, 'id');
     yield this.store.updateCategory.perform(transaction_ids, this.currentCategory);
+    //TODO: We currently have a bug where the category won't reset...
+    this.router.transitionTo({ queryParams: { changeToCategory: null } });
+  }
+
+  @action
+  showTransactionsForGroup() {
+    const groupProspectiveCategoryId = this.transactions[0].prospective_category_id;
+    this.router.transitionTo({ queryParams: { viewTransactions: groupProspectiveCategoryId } })
   }
 
   @action

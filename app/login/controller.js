@@ -12,8 +12,6 @@ export default class LoginController extends Controller {
     return this.session.authenticate('authenticator:jwt', {
       email: email,
       password: password
-    }).then(() => {
-      this.transitionToRoute('welcome');
     }).catch((e) => {
       this.set('errors', e.json.errors);
     });

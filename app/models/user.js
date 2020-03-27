@@ -7,6 +7,7 @@ export default class UserModel extends DS.Model {
   @attr() password
   @attr() email
   @attr() social_photo_url
+  @attr() selected_budget_workflow
 
   @hasMany() transactions
   @hasMany() csv_uploads

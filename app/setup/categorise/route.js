@@ -20,6 +20,7 @@ export default class CategoriseRoute extends Route {
     super.setupController(...arguments);
     set(controller, 'currentTransactionGroup', this.paramsFor('setup').currentTransactionGroup);
     set(controller, 'selectCategory', this.paramsFor('setup').selectCategory);
+    set(controller, 'viewTransactions', this.paramsFor('setup').viewTransactions);
   }
 
   @action
@@ -34,7 +35,9 @@ export default class CategoriseRoute extends Route {
     // super.actions.queryParamsDidChange.call(this, ...arguments);
     let controller = this.controllerFor('setup.categorise');
     if (changed.currentTransactionGroup) {
-      controller.set('currentTransactionGroup', changed.currentTransactionGroup);
+      set(controller, 'currentTransactionGroup', changed.currentTransactionGroup);
     }
+    //TODO: We currently have a bug where the category won't reset...
+    set(controller, 'changeToCategory', changed.changeToCategory);
   }
 }

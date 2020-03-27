@@ -1,4 +1,5 @@
-import { action, computed } from "@ember/object";
+import { computed } from "@ember/object";
+import { task } from 'ember-concurrency-decorators';
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import groupBy from 'budgeter/utils/group-by';
@@ -25,9 +26,9 @@ export default class CategoriseController extends Controller {
     return map(groupBy(this.uncategorisedTransactions, (transaction) => transaction.prospective_category_id));
   }
 
-  @action
-  skipTransaction() {
+  @task
+  skipTransaction = function* () {
     let transactionGroupNo = this.incrementProperty('currentTransactionGroup');
-    this.transitionToRoute({ queryParams: { currentTransactionGroup: transactionGroupNo } });
+    yield this.transitionToRoute({ queryParams: { currentTransactionGroup: transactionGroupNo } });
   }
 }

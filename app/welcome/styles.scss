@@ -1,6 +1,13 @@
 .welcome-card {
-  height: 523px; width: 288px;
+  height: 523px;
+  width: 288px;
   img {
     height: 214px;
+  }
+  @media (max-width: 1440px) {
+    height: 410px;
+    img {
+      height: 170px;
+    }
   }
 }

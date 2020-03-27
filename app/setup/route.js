@@ -17,6 +17,10 @@ export default class SetupRoute extends Route.extend(AuthenticatedRouteMixin) {
       refreshModel: false,
       replace: true
     },
+    changeToCategory: {
+      refreshModel: true,
+      replace: true
+    },
   };
 
   @service()

@@ -8,8 +8,11 @@
       {{currentCategory.name}}
     </div>
     <p class='text-center body-1 text-primary-2 mt-4 mt-8'>
-      We found <b class='font-bold'>{{currentGroupLength}} transactions</b> with the keyword <b
-        class='font-bold'>"{{currentGroupDetails}}"</b><br> We reckon this one comes under {{currentCategory.name}}.
+      We found <a onClick={{action 'showTransactionsForGroup'}}
+        class='font-bold hover:underline cursor-pointer'>{{currentGroupLength}}
+        transactions</a> with
+      the keyword <b class='font-bold'>"{{currentGroupDetails}}"</b><br> We reckon this one comes under
+      {{currentCategory.name}}.
     </p>
     <div class='flex flex-row mt-8'>
       <button class='btn-secondary hover:btn-secondary-hover w-56' {{action 'chooseAnotherCategory'}}>

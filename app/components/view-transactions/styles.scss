@@ -1,0 +1,43 @@
+#test1 {
+  width: 386px;
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(0%);
+}
+
+#transparent {
+  position: absolute;
+  display: block;
+  height: 100px;
+  bottom: 0px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+  z-index: 99999;
+  width: 89%;
+  pointer-events: none;
+}
+
+#test {
+  overflow-x: hidden;
+}
+
+#transaction_list {
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f5f6fa;
+  padding-right: 10px;
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #605f88;
+}
