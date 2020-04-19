@@ -79,9 +79,9 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.DS.host = process.env.API_HOST || 'https://gemino-api.herokuapp.com';
 
-    torii.providers['google-oauth2'].tokenEchangeUri = 'https://gemino-api.herokuapp.com/api/authenticate_with_google';
-    torii.providers['google-oauth2'].redirectUri = 'https://gemino-app.herokuapp.com/torii/redirect.html';
-    
+    ENV.torii.providers['google-oauth2'].tokenEchangeUri = 'https://gemino-api.herokuapp.com/api/authenticate_with_google';
+    ENV.torii.providers['google-oauth2'].redirectUri = 'https://gemino-app.herokuapp.com/torii/redirect.html';
+
     // const clientHost = process.env.CLIENT_HOST || 'https://gemino-app.herokuapp.com';
     // here you can enable a production-specific feature
   }
