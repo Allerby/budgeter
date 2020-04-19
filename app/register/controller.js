@@ -1,15 +1,27 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
+import { set } from '@ember/object';
 
-export default Controller.extend({
-  session: service(),
+export default class RegisterController extends Controller {
+  @service 
+  session;
 
-  authenticate: task(function* () {
-    return yield this.model.save().then(() => {
-      this.transitionToRoute('welcome')
-    }).catch(() => {
-      this.set('errors', this.model.errors)
-    });
-  }),
-});
+  @service 
+  currentUser;
+
+  @task
+  authenticate = function* () {
+    try {
+      let user = yield this.model.save();
+
+      yield this.session.authenticate('authenticator:jwt', {
+        email: user.email,
+        password: user.password
+      });
+
+    } catch (errors) {
+      set(this, 'errors', errors);
+    }
+  };
+};
