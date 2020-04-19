@@ -1,20 +1,22 @@
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import config from 'budgeter/config/environment';
 
-export default DS.JSONAPIAdapter.extend({
-  session: service(),
-  host: config.DS.host,
+export default class ApplicationAdapter extends JSONAPIAdapter.extend(DataAdapterMixin) {
+  @service 
+  session;
 
-  namespace: 'api',
+  host = config.DS.host;
+  namespace = 'api';
 
-  headers: computed(function() {
+  @computed('session.data.authenticated.token')
+  get headers() {
+    let headers = {};
     if (this.session.isAuthenticated) {
-      return {
-        Authorization: `Bearer ${this.session.data.authenticated.token}`
-      };
+      headers['Authorization'] = `Bearer ${this.session.data.authenticated.token}`;
     }
-    return {}
-  }),
-});
+    return headers;
+  }
+}
