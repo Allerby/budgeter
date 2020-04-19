@@ -1,5 +1,17 @@
 <div class={{routeStyleNamespaceClassSet}}>
-  <AnimatedTools />
+  {{#if (eq environment 'development')}}
+    <AnimatedTools />
+  {{/if}}
+
+  {{#if (or 
+      (eq router.currentRouteName 'login') 
+      (eq router.currentRouteName 'register')
+      (eq router.currentRouteName 'forgot-password')
+    )
+  }}
+    <PrimaryNavigation />
+  {{/if}}
+
   {{outlet}}
 
   {{#if (eq router.currentRouteName 'index')}}

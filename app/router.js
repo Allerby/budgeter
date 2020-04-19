@@ -9,6 +9,8 @@ class Router extends EmberRouter {
 Router.map(function() {
   this.route('login');
   this.route('home');
+  this.route('about');
+  this.route('forgot-password');
   this.route('register');
   this.route('welcome');
   this.route('setup', function() {
