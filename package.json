@@ -37,7 +37,6 @@
     "ember-cli-shims": "1.2.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-string-helpers": "^2.0.0",
-    "ember-cli-tailwind": "^0.7.0",
     "ember-cli-uglify": "^3.0.0",
     "ember-cli-update": "^0.34.10",
     "ember-concurrency": "^0.10.0",
@@ -66,7 +65,7 @@
     "torii": "^0.10.1"
   },
   "engines": {
-    "node": "8.* || >= 10.*"
+    "node": "^8.12.0 || >=9.7.0"
   },
   "dependencies": {
     "d3-ease": "^1.0.5",
