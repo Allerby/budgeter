@@ -1,12 +1,24 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
+const tailwindcss = require('tailwindcss');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
       exclude: ['icons/*']
+    },
+    postcssOptions: {
+      compile: {
+        enabled: false,
+      },
+      filter: {
+        enabled: true,
+        plugins: [
+          tailwindcss('app/styles/tailwind.js')
+          // { module: require('postcss-fixes') },
+        ]
+      }
     }
     // Add options here
   });

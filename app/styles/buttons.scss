@@ -1,15 +1,30 @@
-/**
- * You can create new utilities here.
- *
- * Feel free to rename this file, define multiple utilities here, or make
- * any other files in this directory.
+.btn-secondary {
+  @apply .rounded .text-primary-1 .p-3 .leading-normal
+}
 
- * Here's an example:
-**/
+.btn-primary {
+  @apply .rounded .text-white .p-3 .bg-primary-1 .leading-normal .transition
+}
 
-/* .skew-45 {
-  transform: skewY(45deg);
-} */
+.btn-primary.disabled, button[disabled], button:disabled, button:disabled:hover {
+  @apply .bg-primary-disabled .cursor-not-allowed
+}
+
+.body-1 {
+  @apply .font-thin .leading-body-1
+}
+
+.body-2 {
+  @apply .text-sm
+}
+
+.icon {
+  @apply .w-6 .h-6 .block .bg-contain
+}
+
+.check {
+  background-image: url('/icons/tick-dark@2x.png');
+}
 
 @variants focus {
   .border-primary-1 {
@@ -57,8 +72,4 @@
     box-shadow: rgba(159, 163, 185, 0.5) 0 10px 30px -7px, rgba(0, 0, 0, 0) 0 0 0 0;
     cursor: pointer;
   }
-}
-
-.transition {
-  transition: all 0.4s;
 }

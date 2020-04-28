@@ -1,8 +1,12 @@
-// @import 'tailwind';
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
 @import 'reset';
 @import 'typography';
 @import 'pod-styles.scss';
 @import 'power-select';
+@import 'buttons.scss';
 
 .ember-power-select-option[aria-selected='true'] {
   color: #605f88;
@@ -61,4 +65,8 @@
     border-color: #e1e1e6;
     padding: 4px;
   }
+}
+
+.transition {
+  transition: all 0.4s;
 }
