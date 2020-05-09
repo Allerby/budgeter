@@ -30,7 +30,7 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
-        'app/styles/tailwind.js'
+        'app/styles/tailwind.config.js'
       ],
       excludedFiles: [
         'app/**',

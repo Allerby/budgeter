@@ -13,7 +13,7 @@ export default Component.extend({
   router: service(),
   store: service(),
 
-  classNames: ['pin-l pin-t absolute h-full w-full flex justify-center md:ml-24 flex-col'],
+  classNames: ['left-0 top-0 absolute h-full w-full flex justify-center md:ml-24 flex-col'],
 
   createNewCategory: task(function* () {
     let category = yield this.store.createRecord('category', {

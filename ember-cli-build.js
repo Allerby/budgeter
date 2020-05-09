@@ -15,7 +15,7 @@ module.exports = function (defaults) {
       filter: {
         enabled: true,
         plugins: [
-          tailwindcss('app/styles/tailwind.js')
+          tailwindcss('app/styles/tailwind.config.js')
           // { module: require('postcss-fixes') },
         ]
       }

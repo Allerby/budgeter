@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { without, includes } from 'lodash';
 
-@classNames('pin-l pin-t absolute h-full w-full flex justify-center md:ml-24 flex-col')
+@classNames('left-0 top-0 absolute h-full w-full flex justify-center md:ml-24 flex-col')
 
 export default class ViewTransactions extends Component {
   @service router;
